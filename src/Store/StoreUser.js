@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+//Creare nel initialstate un oggetto padre 
+//Al suo interno creare state dipendentiAdmin:[], dipendentiOperatori:[], ordiniDaEvadere:[], ordiniEvasi:[]
+
 
 let id = 0
 //state iniziale
@@ -11,14 +14,13 @@ const initialState = {
     ordiniDaEvadere:[],
     ordiniEvasi:[],
     id,
-    idOrd:0
+    idOrd:1
 }
 
 //reducer + actions
 const storeUser=createSlice({
     name:"storeUser",
     initialState:initialState,
-
     reducers:{
         setLogged:(state, action)=>{
          state.logged=action.payload
@@ -65,3 +67,5 @@ export const {
     setOrdiniDaEvadere, 
     setOrdiniEvasi,
     filtraOrdiniDaEvadere} = storeUser.actions
+
+

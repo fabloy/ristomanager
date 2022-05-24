@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi} from "../Store/StoreUser"
 import { filtra } from "../functions/filtra";
 
- const Dashboard = ({elenco, input, funInput})=>{
+ const Dashboard = ({elenco, input})=>{
     const dispatch = useDispatch()
     const {ordiniEvasi}=useSelector(state=>state)
     const evadiOrdine = (el, elenco)=>{

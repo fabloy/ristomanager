@@ -57,7 +57,7 @@ const AreaAdmin = ()=>{
     </section>
     <section>
         <div>
-         <Link to="/nuovoopertore">
+         <Link to="/new-operator">
           <p>Crea un nuovo utente operatore</p>
          </Link>
          <Link to="/inserisciordine">

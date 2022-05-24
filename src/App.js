@@ -13,6 +13,8 @@ import { BrowserRouter, Routes} from 'react-router-dom';
 import {setLogged} from '../src/Store/StoreUser'
 import { useDispatch, useSelector } from 'react-redux';
 import FormNuovoOrdine from './Components/FormNuovoOrdine';
+import FormRegistrazione from './Components/FormRegistrazione';
+import FormNewOperator from './Components/FormNewOperator';
 
 
 
@@ -55,6 +57,10 @@ function App() {
             input="evadi"
            />
           }/>
+
+          <Route path="/new-operator" element={
+           <FormNewOperator/>
+          }/> 
   
        </Routes>
        

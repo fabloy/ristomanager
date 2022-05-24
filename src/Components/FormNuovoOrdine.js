@@ -7,7 +7,7 @@ import { cleanInput } from "../functions/cleanInput";
 
 const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPrincipali})=>{
     const dispatch = useDispatch()
-    const {idOrd}=useSelector(state=>state)
+    const {idOrd, nome:nomeOperatore}=useSelector(state=>state)
     //state locali:
     const [name, setName]=useState()
     const [orderNumber, setOrderNumber]=useState(idOrd)
@@ -34,11 +34,10 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     }
 
     return(
+        <>
+        <label>{nomeOperatore} stai inserendo un nuovo ordine</label>
         <form onSubmit={(e)=>invioNuovoOrdine(e)}>
-            
-            <label style={{display: orderNumber?"block":"none"}}>
-             {orderNumber.toString()}
-            </label>
+            <h3>Nuovo Ordine n.{idOrd?.toString()}</h3>
             <div style={{display: nome?"block":"none"}}>
              <label>{nome}</label>
              <input 
@@ -85,6 +84,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
 
             <input type="submit"></input>
         </form>
+        </>
     )
 }
 

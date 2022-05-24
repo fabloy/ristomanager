@@ -1,0 +1,10 @@
+- aggiungere messaggi di avviso su compilazione campi in FORMREGISTRAZIONE
+- aggiungere allo stare degli state un array con elenco operatori inseriti visibile solo
+  da profili Admin.
+- in InserimentoOrdine aggiungere possibilità di aggiungere quantita di prodotto che va ad incidere sul prezzo totale dell'ordine,
+  il prezzo prodotto cambia in base alla categoria (torta, salato, crostata, brioches). il prezzo della categoria è modificabile solo da utenti Admin.
+- aggiungere possibilità di modifica ordine una volta inserito in "ordini da evadere"
+-aggiungere controlli sui campi inseriti in InserimentoOrdine
+- aggiungere controlli in login, se i controlli sono tutti true, loggare l'utente, modificare lo state centralizzato
+  con i nuovi dati dell'utente.
+- fare Css e responsive design in Tailwind
