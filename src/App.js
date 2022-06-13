@@ -58,7 +58,7 @@ function App() {
            />
           }/>
 
-          <Route path="/new-operator" element={
+          <Route path="/new-operator/:created" element={
            <FormNewOperator/>
           }/> 
   

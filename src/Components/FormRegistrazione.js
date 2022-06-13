@@ -3,6 +3,7 @@ import {setNome, setEmail, setPassword, setId, setLogged} from "../Store/StoreUs
 import {useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
 import {validateEmail, validatePassword, validateNomeAttivita} from "../functions/submitUser"
+import { checkNome, checkEmail, checkPassword } from "../functions/checkValue";
 import { useState } from "react"
 import { Attivita } from "../Model/Attivita"
 
@@ -12,7 +13,7 @@ const FormRegistrazione = ()=>{
  const [attivitaNome, setAttivitaNome]= useState()
  const [attivitaEmail, setAttivitaEmail]= useState()
  const [attivitaPassword, setAttivitaPassword]= useState()
- const [alert, setAlert]=useState()
+ const [alert, setAlert]=useState("")
 
 //state Store:
  const dispatch=useDispatch()
@@ -32,14 +33,18 @@ const FormRegistrazione = ()=>{
     }
     alert("dati non validi")
  }
- const checkUser= ()=>{
-    if(attivitaNome){
-        validateNomeAttivita(attivitaNome) ? setAlert("") : setAlert("nome attività troppo corto")
-    }
+
+const checkUser= ()=>{
+       if(attivitaNome, attivitaEmail, attivitaPassword ){
+        if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){
+         setAlert("Dati Corretti") 
+        } 
  }
+ }
+
  useEffect(()=>{
     checkUser()
- },[attivitaNome])
+ },[attivitaNome, attivitaEmail, attivitaPassword])
 
  return(
     <form onSubmit={(e)=>submitUser(e)}>
@@ -50,28 +55,40 @@ const FormRegistrazione = ()=>{
      <label>
       nome
      </label>
-        <input 
+        <input
+        required 
          type="text" 
          value={attivitaNome} 
-         onChange={(e)=>{setAttivitaNome(e.target?.value)}}>
+         onChange={(e)=>{
+            setAttivitaNome(e.target?.value)
+            setAlert(checkNome(e.target?.value))
+            }}>
          </input>
         
         <label>
             email
         </label>
         <input 
+         required
          type="email"
          value={attivitaEmail}
-         onChange={(e)=>{setAttivitaEmail(e.target?.value)}}
+         onChange={(e)=>{
+            setAttivitaEmail(e.target?.value)
+            setAlert(checkEmail(e.target?.value))
+         }}
          >
          </input>
         <label>
          password
         </label>
         <input 
+        required
         type="password"
         value={attivitaPassword}
-        onChange={(e)=>{setAttivitaPassword(e.target?.value)}}
+        onChange={(e)=>{
+           setAttivitaPassword(e.target?.value)
+           setAlert(checkPassword(e.target?.value))
+         }}
         >
         </input>
         <div>
