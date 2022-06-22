@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import displayAlert from "../functions/displayAlert";
 
-const MsgAlert = ({newOperator})=>{
+const MsgAlert = ({newOperator, msg})=>{
     useEffect(()=>{
         displayAlert()
     },[])
@@ -9,7 +9,7 @@ const MsgAlert = ({newOperator})=>{
     return(
      <aside id="alertMsg">
       <span>
-      {newOperator? "Nuovo Utente operatore aggiunto: ":""}
+      {newOperator? msg :""}
       </span>
       <p>
        {newOperator?.nome}

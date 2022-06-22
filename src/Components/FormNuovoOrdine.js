@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from "react";
+import MsgAlert from "./MsgAlert";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrdiniDaEvadere } from "../Store/StoreUser";
 import { Ordine } from "../Model/Ordine";
@@ -15,23 +16,31 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     const [description, setDescription]=useState()
     const [ingredients, setIngredients]=useState()
     const [tel, setTel]=useState()
+    const [view, setView]=useState()
+    const [alert, setAlert]=useState()
   
     let ordineGenerato
     const invioNuovoOrdine = (e)=>{
         e.preventDefault()
-        //qua bisognerà inserire i controlli sui campi inseriti
-        setOrderNumber(orderNumber+1)
+        if(name && date && description && tel.length===10){
+         setOrderNumber(orderNumber+1)
          ordineGenerato = new Ordine(name, tel, description, ingredients, date, orderNumber)
-        dispatch(setOrdiniDaEvadere({
+         dispatch(setOrdiniDaEvadere({
             'nome':ordineGenerato.nome, 
             'ordine':ordineGenerato.id,
             'telefono':ordineGenerato.telefono,
             'data':ordineGenerato.data,
             'descrizione':ordineGenerato.descrizione,
             'ingredienti principali':ordineGenerato.ingredienti,
-        }))
-        cleanInput()
+          }))
+          setView(true)
+          cleanInput()
+        }
     }
+
+    useEffect(()=>{
+     setTimeout(()=>setView(false), 1500)
+    },[orderNumber])
 
     return(
         <>
@@ -52,8 +61,11 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
              <label>{telefono}</label>
              <input 
               required 
-              type="tel"
-              onChange={(e)=>setTel(e.target.value)}
+              type="number"
+              onChange={(e)=>{
+               e.target.value.length!==10 ? setAlert("Numero di telefono non valido, deve essere composto da 10 cifre") : setAlert("")
+               setTel(e.target.value)
+            }}
               >
              </input>
             </div>
@@ -83,8 +95,17 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
              </input>
 
             <input type="submit"></input>
+            <p style={{color:"red", fontSize:"1rem"}}>{alert}</p> 
         </form>
-        </>
+        {
+            view? <MsgAlert 
+            newOperator={orderNumber.toString()} 
+            msg={`nuovo ordine aggiunto`}
+            />
+          :
+            <></>
+        }
+      </>
     )
 }
 

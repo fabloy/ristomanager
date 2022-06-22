@@ -23,7 +23,7 @@ const AreaAdmin = ()=>{
     {data.toString()}
     <section>
      <p>ordini da evadere:</p>
-     <ul>
+     <ul id="ordContainer">
     {
         ordiniDaEvadere.map(ord=>{
             return(
@@ -50,7 +50,9 @@ const AreaAdmin = ()=>{
      <ul>
     {
         ordiniEvasi.map(ord=>{
-            return <li>{ord.ordine}</li>
+            return <li>
+                <b>{ord.nome}</b> ordine.{ord.ordine}
+                </li>
         })
     }
     </ul>

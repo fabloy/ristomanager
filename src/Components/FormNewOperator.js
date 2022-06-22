@@ -26,7 +26,7 @@ const FormNewOperator = ()=>{
     setName("")
     setEmail("")
     setPassword("")
-    setTimeout(setParams,2000)
+    setTimeout(setParams,1500)
   }else{
    setAlert("dati non validi")
   }
@@ -99,7 +99,10 @@ const FormNewOperator = ()=>{
         </>
         :
         <>
-         <MsgAlert newOperator={newOperator} />
+         <MsgAlert 
+          newOperator={newOperator} 
+          msg={"nuovo utente operatore aggiunto"}
+          />
          <Home/>
         </>
         

@@ -50,7 +50,7 @@ const AreaOperatore = ()=>{
      <ul>
     {
         ordiniEvasi.map(ord=>{
-            return <li>{ord.ordine}</li>
+            return <li>{ord.nome} ordine:{ord.ordine}</li>
         })
     }
     </ul>

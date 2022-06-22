@@ -16,7 +16,12 @@ import { filtra } from "../functions/filtra";
         <div>
             <ul>
                 <li>Ordini da evadere</li>
-            {
+            {elenco.length===0? <p>
+                 <b>
+                  Nessun ordine da evadere
+                 </b>
+                </p>
+            :
                 elenco.map((el, index)=>{
                     return(
                     <>

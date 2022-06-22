@@ -8,15 +8,15 @@ const RegistrazioneCorretta=()=>{
     return(
         <section>
             <p>
-             Benvenuto {nome}
+             Benvenuto {nome}<br></br>
              la tua registrazione è avvenuta correttamente,
-             torna alla home per monitorare i tuoi ordini 
+             torna alla 
+             <Link 
+              to="/">
+               Home 
+             </Link> 
+              per monitorare i tuoi ordini 
             </p>
-            <button>
-                <Link to="/">
-                 Home
-                </Link>
-            </button>
         </section>
     )
 }

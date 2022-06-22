@@ -1,5 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCircleInfo} from '@fortawesome/free-solid-svg-icons'
+
 
 const Navbar = ({logged})=>{
     return(
@@ -7,6 +10,8 @@ const Navbar = ({logged})=>{
         <h1>
           Ristomanager
         </h1>
+       
+        
         
         <ul>
           <Link to={'/'}>
@@ -28,6 +33,9 @@ const Navbar = ({logged})=>{
           }
           
         </ul>
+        
+        <FontAwesomeIcon icon={faCircleInfo}/>
+       
       </nav>
     )
 }

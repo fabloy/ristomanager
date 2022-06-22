@@ -6,35 +6,47 @@ import AreaOperatore from "./AreaOperatore";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAdmin } from "../Store/StoreUser";
+import FirstStepCSS from "./style/FirstStep.module.css"
+// import BtnCustom from "./style/BtnCustom";
+
 
 const FirstStep = ()=>{
     const dispatch=useDispatch()
     const {logged, admin} = useSelector(state=>state)
 
-    return !logged? (<main>
-        <div>
+    return !logged? (
         
-            <h2 onClick={()=>{
-                dispatch(setAdmin(true))
-                }}>
-             <Link to={'/registrazione'}>
-              Area Amministratore
-             </Link>
-            </h2>
+    <main className={`${FirstStepCSS.boxContainer}`}>
+   
+     <Link 
+      className={`${FirstStepCSS.boxToSelect} ${FirstStepCSS.imgOne} ${FirstStepCSS.link}`} 
+      to={'/registrazione'}
+      >
+      
+       <h2
+       className={`${FirstStepCSS.bottomTitle}`}
+        onClick={
+            ()=>{dispatch(setAdmin(false))
+         }}>
+         Area Operatore
+        </h2>
+      </Link>
+
+      <Link 
+       to={'/registrazione'}
+       className={`${FirstStepCSS.boxToSelect} ${FirstStepCSS.imgTwo} ${FirstStepCSS.link}`}
+      >
+         <h2 
+          className={`${FirstStepCSS.bottomTitle}`}
+          onClick={
+            ()=>{dispatch(setAdmin(true))
+         }}>
+           Area Amministratore
+         </h2>
+      </Link>
         
-        </div>
-        <div>
-            <h2 onClick={()=>{
-                dispatch(setAdmin(false))
-                }}>
-           <Link to={'/registrazione'}>
-                Area Operatore
-            </Link>
-            
-            </h2>
-            {admin?.toString()}
-        </div>
-    </main>)
+    </main>
+    )
     :
     admin? <AreaAdmin /> : <AreaOperatore/>
 }
