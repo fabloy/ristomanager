@@ -6,7 +6,7 @@ import AreaOperatore from "./AreaOperatore";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAdmin } from "../Store/StoreUser";
-import FirstStepCSS from "./style/FirstStep.module.css"
+import FirstStepCSS from "./StyleComponents/FirstStep.module.css"
 // import BtnCustom from "./style/BtnCustom";
 
 
@@ -17,7 +17,7 @@ const FirstStep = ()=>{
     return !logged? (
         
     <main className={`${FirstStepCSS.boxContainer}`}>
-   
+
      <Link 
       className={`${FirstStepCSS.boxToSelect} ${FirstStepCSS.imgOne} ${FirstStepCSS.link}`} 
       to={'/registrazione'}
@@ -35,12 +35,13 @@ const FirstStep = ()=>{
       <Link 
        to={'/registrazione'}
        className={`${FirstStepCSS.boxToSelect} ${FirstStepCSS.imgTwo} ${FirstStepCSS.link}`}
+       onClick={
+        ()=>{dispatch(setAdmin(true))
+     }}
       >
          <h2 
           className={`${FirstStepCSS.bottomTitle}`}
-          onClick={
-            ()=>{dispatch(setAdmin(true))
-         }}>
+          >
            Area Amministratore
          </h2>
       </Link>

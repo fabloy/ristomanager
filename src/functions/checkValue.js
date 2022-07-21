@@ -1,7 +1,7 @@
 import { validateNomeAttivita, validateEmail, validatePassword } from "./submitUser"
 export const checkNome = (nome)=>{
     if(nome){
-        if(validateNomeAttivita(nome)=== false){
+        if(validateNomeAttivita(nome) === false){
         return alert="Nome troppo corto"
         }
         return alert=""

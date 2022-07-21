@@ -1,0 +1,12 @@
+.adv{
+    position: absolute;
+    bottom: 20vh; 
+    margin: 0 auto;
+    max-height: 0;
+    overflow: hidden; 
+    z-index: 100;
+    background-color: #ffb5b5;
+    transition: .4s;
+    border-radius: 10px;
+    color: hsl(210, 10%, 23%);
+}

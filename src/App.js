@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormNuovoOrdine from './Components/FormNuovoOrdine';
 import FormRegistrazione from './Components/FormRegistrazione';
 import FormNewOperator from './Components/FormNewOperator';
+import Advisor from './Components/StyleComponents/Advisor';
 
 
 

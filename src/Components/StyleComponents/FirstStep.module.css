@@ -3,16 +3,18 @@
     display: flex;
     flex-direction: column;
      margin: 0 auto;
+     padding: 15px;
     }
 .boxToSelect{
     margin: 10px;
     border-radius: 10px;
-    flex: 85%;
-    min-height: 45vh;
+    /* flex: 85%; */
+    min-height: 40vh;
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center;
     transition: .5s;
+    box-shadow: 0px 0px 10px 1px rgba(125,125,125,0.94);
 }
 .boxToSelect:hover{
     cursor: pointer;
@@ -45,8 +47,16 @@
 }
 
     
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
       .boxContainer{
         flex-direction:row;
+        justify-content:center;
+        padding: 10px;
+        }
+        .boxToSelect{
+            box-shadow: 0px 0px 0px 0px rgba(125,125,125,0.94);
+            width: 35%;
+            min-height: 50vh;
+           
         }
     }
