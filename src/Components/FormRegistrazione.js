@@ -6,99 +6,106 @@ import {validateEmail, validatePassword, validateNomeAttivita} from "../function
 import { checkNome, checkEmail, checkPassword } from "../functions/checkValue";
 import { useState } from "react"
 import { Attivita } from "../Model/Attivita"
-
+import BasicExample from "../Components/StyleComponents/FormBootstrap"
 
 const FormRegistrazione = ()=>{
 //state locali:
- const [attivitaNome, setAttivitaNome]= useState()
- const [attivitaEmail, setAttivitaEmail]= useState()
- const [attivitaPassword, setAttivitaPassword]= useState()
- const [alert, setAlert]=useState("")
+//  const [attivitaNome, setAttivitaNome]= useState()
+//  const [attivitaEmail, setAttivitaEmail]= useState()
+//  const [attivitaPassword, setAttivitaPassword]= useState()
+//  const [alert, setAlert]=useState("")
 
 //state Store:
- const dispatch=useDispatch()
- const {id, admin}=useSelector(state=>state)
+//  const dispatch=useDispatch()
+//  const {id, admin}=useSelector(state=>state)
 
- const submitUser=(e)=>{
-    e.preventDefault()
-    if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){
-     dispatch(setId())
-     let attivitaInserita = new Attivita(attivitaNome, attivitaEmail, attivitaPassword, id)
-     dispatch(setNome(attivitaInserita.nome))
-     dispatch(setEmail(attivitaInserita.email))
-     dispatch(setPassword(attivitaInserita.password))
-     dispatch(setLogged(true))
-     console.log(attivitaInserita)
-     return
-    }
-    alert("dati non validi")
- }
+//  const submitUser=(e)=>{
+//     e.preventDefault()
+//     if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){
+//      dispatch(setId())
+//      let attivitaInserita = new Attivita(attivitaNome, attivitaEmail, attivitaPassword, id)
+//      dispatch(setNome(attivitaInserita.nome))
+//      dispatch(setEmail(attivitaInserita.email))
+//      dispatch(setPassword(attivitaInserita.password))
+//      dispatch(setLogged(true))
+//      console.log(attivitaInserita)
+//      return
+//     }
+//     setAlert("dati non validi")
+//  }
 
-const checkUser= ()=>{
-       if(attivitaNome, attivitaEmail, attivitaPassword ){
-        if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){
-         setAlert("Dati Corretti") 
-        } 
- }
- }
+// const checkUser= ()=>{
+//        if(attivitaNome, attivitaEmail, attivitaPassword ){
+//         if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){
+//          setAlert("Dati Corretti") 
+//         }else{
+//          setAlert("non ")
+//         }
+//  }
+//  }
 
- useEffect(()=>{
-    checkUser()
- },[attivitaNome, attivitaEmail, attivitaPassword])
+//  useEffect(()=>{
+//     checkUser()
+//  },[attivitaNome, attivitaEmail, attivitaPassword])
 
  return(
-    <form onSubmit={(e)=>submitUser(e)}>
-        <h2>Registrazione</h2>
-        <h4>
-         {admin ? "Amministratore" : "Operatore"}
-        </h4>
-     <label>
-      nome
-     </label>
-        <input
-        required 
-         type="text" 
-         value={attivitaNome} 
-         onChange={(e)=>{
-            setAttivitaNome(e.target?.value)
-            setAlert(checkNome(e.target?.value))
-            }}>
-         </input>
+//    <>
+//     <form onSubmit={(e)=>submitUser(e)}>
+//         <h2>Registrazione</h2>
+//         <h4>
+//          {admin ? "Amministratore" : "Operatore"}
+//         </h4>
+//      <label>
+//       nome
+//      </label>
+//         <input
+//         required 
+//          type="text" 
+//          value={attivitaNome} 
+//          onChange={(e)=>{
+//             setAttivitaNome(e.target?.value)
+//             setAlert(checkNome(e.target?.value))
+//             }}>
+//          </input>
         
-        <label>
-            email
-        </label>
-        <input 
-         required
-         type="email"
-         value={attivitaEmail}
-         onChange={(e)=>{
-            setAttivitaEmail(e.target?.value)
-            setAlert(checkEmail(e.target?.value))
-         }}
-         >
-         </input>
-        <label>
-         password
-        </label>
-        <input 
-        required
-        type="password"
-        value={attivitaPassword}
-        onChange={(e)=>{
-           setAttivitaPassword(e.target?.value)
-           setAlert(checkPassword(e.target?.value))
-         }}
-        >
-        </input>
-        <div>
-         <span>
-             {alert}
-          </span>
-        </div>
-        <input type="submit" >
-        </input>
-    </form>
+//         <label>
+//             email
+//         </label>
+//         <input 
+//          required
+//          type="email"
+//          value={attivitaEmail}
+//          onChange={(e)=>{
+//             setAttivitaEmail(e.target?.value)
+//             setAlert(checkEmail(e.target?.value))
+//          }}
+//          >
+//          </input>
+//         <label>
+//          password
+//         </label>
+//         <input 
+//         required
+//         type="password"
+//         value={attivitaPassword}
+//         onChange={(e)=>{
+//            setAttivitaPassword(e.target?.value)
+//            setAlert(checkPassword(e.target?.value))
+//          }}
+//         >
+//         </input>
+//         <div>
+//          <span>
+//              {alert}
+//           </span>
+//         </div>
+//         <input type="submit" >
+//         </input>
+//     </form>
+          <BasicExample
+          >
+          </BasicExample>
+         //  </>
     )
 }
 

@@ -1,4 +1,5 @@
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Registrazione from './Components/Registrazione';
 import Navbar from './Components/Navbar';
@@ -7,6 +8,7 @@ import FormLogin from './Components/FormLogin';
 import Logout from './Components/Logout';
 import Dashboard from './Components/Dashboard';
 import OrdineDettaglio from './Components/OrdineDettaglio';
+
 
 import { Route } from 'react-router';
 import { BrowserRouter, Routes} from 'react-router-dom';
@@ -66,6 +68,7 @@ function App() {
        </Routes>
        
       </BrowserRouter>
+
     </div>
   );
 }

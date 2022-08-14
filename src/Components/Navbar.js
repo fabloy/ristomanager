@@ -15,9 +15,10 @@ const Navbar = ({logged})=>{
   const [openOrClose, setOpenOrClose] = useState(false)
 
   useEffect(()=>{
-    showAdv ? document.querySelector("article").style.maxHeight="5rem" : document.querySelector("article").style.maxHeight="0"
+    // showAdv ? document.querySelector("h1").style.maxHeight="5rem" : document.querySelector("h1").style.maxHeight="0"
   showAdv ? document.getElementById("blurElement").style.display="block" :  document.getElementById("blurElement").style.display="none" 
   },[showAdv])
+
     return(
         <nav className={NavbarCSS.nav}>
         
@@ -45,7 +46,9 @@ const Navbar = ({logged})=>{
            <FontAwesomeIcon 
             icon={faCircleInfo}
             className={`pointer icon` }
-            onClick={()=>setShowAdv(!showAdv)}
+            onClick={()=>{
+              setShowAdv(!showAdv)
+            }}
             />
            </aside>
            
@@ -53,8 +56,13 @@ const Navbar = ({logged})=>{
 
           {/* da sistemare: */}
           <div id="blurElement">
-          <Advisor title="Info" text={`Benvenuto su Ristomanager, il gestionale che ti permetterà di gestire al meglio i tuoi clienti,
-           gli ordini e il tuo team`}/>
+          <Advisor 
+          title="Info" 
+          text={`Benvenuto su Ristomanager, il gestionale che ti permetterà di gestire al meglio i tuoi clienti,
+           gli ordini e il tuo team`}
+           hide={()=>setShowAdv(!showAdv)}
+           showAdv={showAdv}
+           />
           </div>
       </nav>
     )

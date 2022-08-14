@@ -1,4 +1,6 @@
-
+h2{
+    margin-bottom: 0px;
+}
 .boxContainer{
     display: flex;
     flex-direction: column;

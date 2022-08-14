@@ -7,6 +7,9 @@
     /* position: fixed; */
     width: 100%;
 }
+a{
+    text-decoration: none;
+}
 a li{
     color:#ced4da;
     transition: .5s;
