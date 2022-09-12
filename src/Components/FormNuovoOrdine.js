@@ -18,6 +18,19 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     const [tel, setTel]=useState()
     const [view, setView]=useState()
     const [alert, setAlert]=useState()
+    const [kindProduct, setKindProduct]= useState([{
+      name:"Torta",
+      price:20.00
+    }, 
+    {name:"Crostata",
+     price:15.50
+    },
+    {
+      name:"Salatini",
+      price:7.30
+    } 
+    ])
+    const [priceSelected, setPriceSelected] = useState("")
   
     let ordineGenerato
     const invioNuovoOrdine = (e)=>{
@@ -70,6 +83,28 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
              </input>
             </div>
             
+            <div>
+            <label for="productKind">tipo di prodotto:</label>
+             <select name="cars" id="productKind"
+             onMouseUp={()=>{
+              setPriceSelected(document.getElementById("productKind").value)
+             }}>
+              {
+                kindProduct.map((product, index)=>{
+                 return <option 
+                  key={index} 
+                  value={product.price}
+                  >
+                    {product.name}
+                  </option>
+                })
+              }
+             </select>
+             <span>
+             {` prezzo al kilo: ${priceSelected?.toString()} €`}
+             </span>
+            </div>
+
             <label>{descrizione}</label>
             <textarea 
              style={{display: descrizione?"block":"none"}}
