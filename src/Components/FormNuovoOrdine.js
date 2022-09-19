@@ -31,6 +31,8 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     } 
     ])
     const [priceSelected, setPriceSelected] = useState("")
+    const quantityList = [1,2,3,4,5,6,7,8,9,10]
+    const [count, setCount]= useState("")
   
     let ordineGenerato
     const invioNuovoOrdine = (e)=>{
@@ -103,6 +105,32 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
              <span>
              {` prezzo al kilo: ${priceSelected?.toString()} €`}
              </span>
+            {
+              priceSelected? <aside>
+              <label
+               for="quantity"
+              >
+               Quantità in Kg: 
+              </label>
+              <select
+               id="quantity"
+               type="number"
+               onMouseUp={()=>setCount(priceSelected*document.getElementById("quantity").value)}
+              >
+                {
+                quantityList.map((ql, index)=>{
+                  return <option 
+                  key={index}
+                  >
+                    {ql.toString()}
+                  </option>
+                })
+              }
+              </select>
+             </aside>
+             :
+             <></>
+            } 
             </div>
 
             <label>{descrizione}</label>
@@ -128,8 +156,16 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
              onChange={(e)=>{setDate(e.target.value)}}
              >
              </input>
-
-            <input type="submit"></input>
+              <p>
+                Totale:
+                {count.toString()}
+                $
+              </p>
+            <input 
+             type="submit" 
+             value="Ordina"
+             >
+            </input>
             <p style={{color:"red", fontSize:"1rem"}}>{alert}</p> 
         </form>
         {
