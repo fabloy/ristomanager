@@ -6,7 +6,7 @@ import {validateEmail, validatePassword, validateNomeAttivita} from "../function
 import { checkNome, checkEmail, checkPassword } from "../functions/checkValue";
 import { useState } from "react"
 import { Attivita } from "../Model/Attivita"
-import BasicExample from "../Components/StyleComponents/FormBootstrap"
+import FormBootstrap from "../Components/StyleComponents/FormBootstrap"
 
 const FormRegistrazione = ()=>{
 //state locali:
@@ -102,9 +102,9 @@ const FormRegistrazione = ()=>{
 //         <input type="submit" >
 //         </input>
 //     </form>
-          <BasicExample
+          <FormBootstrap
           >
-          </BasicExample>
+          </FormBootstrap>
          //  </>
     )
 }

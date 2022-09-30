@@ -1,10 +1,21 @@
 
 import React, { useEffect, useState } from "react";
-import MsgAlert from "./MsgAlert";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrdiniDaEvadere } from "../Store/StoreUser";
 import { Ordine } from "../Model/Ordine";
 import { cleanInput } from "../functions/cleanInput";
+
+import FormToCustom from "./FormToCustom";
+import NameInput from "./MiniComponents/formComponents/NameInput"
+import TelephoneInput from "./MiniComponents/formComponents/TelephoneInput"
+import SelectInput from "./MiniComponents/formComponents/SelectInput";
+import NumeberInput from "./MiniComponents/formComponents/NumberInput";
+import TextAreaInput from "./MiniComponents/formComponents/TextAreaInput";
+import DateInput from "./MiniComponents/formComponents/DateInput";
+import ButtonInput from "./MiniComponents/formComponents/ButtonInput"
+import TextElement from "./MiniComponents/TextElement"
+import AlertElement from "./MiniComponents/AlertElement";
+import { checkNome, checkEmail, checkPassword } from "../functions/checkValue";
 
 const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPrincipali})=>{
     const dispatch = useDispatch()
@@ -18,7 +29,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     const [tel, setTel]=useState()
     const [view, setView]=useState()
     const [alert, setAlert]=useState()
-    const [kindProduct, setKindProduct]= useState([{
+    const kindProduct=[{
       name:"Torta",
       price:20.00
     }, 
@@ -29,7 +40,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
       name:"Salatini",
       price:7.30
     } 
-    ])
+  ]
     const [priceSelected, setPriceSelected] = useState("")
     const quantityList = [1,2,3,4,5,6,7,8,9,10]
     const [count, setCount]= useState("")
@@ -50,12 +61,16 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
           }))
           setView(true)
           cleanInput()
+        }else{
+          console.log("error! form not sent", name,date, description,tel.length===10)
         }
     }
 
     useEffect(()=>{
      setTimeout(()=>setView(false), 1500)
-    },[orderNumber])
+     console.log(priceSelected)
+     priceSelected===""? setAlert("Prodotto non selezionato") : setAlert("")
+    },[orderNumber, priceSelected])
 
     return(
         <>
@@ -167,15 +182,58 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
              >
             </input>
             <p style={{color:"red", fontSize:"1rem"}}>{alert}</p> 
+            
         </form>
         {
-            view? <MsgAlert 
-            newOperator={orderNumber.toString()} 
-            msg={`nuovo ordine aggiunto`}
+            view? <AlertElement 
+            variantSelected="success"
+            text={`Ordine ${orderNumber.toString()} aggiunto correttamente`}
             />
           :
             <></>
         }
+      
+      <hr></hr>
+      <FormToCustom
+       triggerName="Invia ordine"
+       submitFun={(e)=>invioNuovoOrdine(e)}
+       input={[
+              <h3>Nuovo Ordine n.{idOrd?.toString()}</h3>,
+              <NameInput 
+               setName={(e)=>{
+                setName(e.target.value)
+                setAlert(checkNome(e.target.value))
+              }}
+              />,
+              <TelephoneInput
+               setTel={(e)=>setTel(e.target.value)}
+              />,
+              <SelectInput
+               inputItems={kindProduct}
+               itemSelectFun={(e)=>{setPriceSelected(e)
+              }}
+              />,
+              <NumeberInput
+              description="quantità"
+              setValue={(e)=>setCount(priceSelected*e)}
+              />,
+              <TextAreaInput
+              description="inserisci descrizione prodotto"
+              changeDescription={(e)=>setDescription(e.target.value)}
+              />,
+              <DateInput
+              description="data di ritiro"
+              setDate={(e)=>setDate(e.target.value)}
+              />,
+              <TextElement
+              primaryText={count.toString()+"$"}
+              secondaryText="Totale:"
+              />,
+              <p>{alert}</p>
+             ]
+            }
+      >
+      </FormToCustom>
       </>
     )
 }

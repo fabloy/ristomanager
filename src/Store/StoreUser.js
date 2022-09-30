@@ -27,6 +27,7 @@ const storeUser=createSlice({
         },
         setNome:(state, action)=>{
          state.nome=action.payload
+        //  console.log(action, "payload")
         },
         setEmail:(state,action)=>{
          state.email=action.payload

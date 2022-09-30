@@ -14,13 +14,13 @@ a{
 }
 
 form{
-  border: solid 1px black;
   margin-top: 20px;
-  padding: 10px;
-  margin: 0 auto;
-  width: 80%;
+  padding: 2rem;
+  margin: 3rem auto;
+  width: 70%;
   min-height: 40vh;
   background-color: wheat;
+  border-radius: 15px;
 }
 form input{
   display: block;

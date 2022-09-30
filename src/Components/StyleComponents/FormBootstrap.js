@@ -10,7 +10,7 @@ import { checkNome, checkEmail, checkPassword } from "../../functions/checkValue
 import { Attivita } from "../../Model/Attivita"
 
 
-function BasicExample(){
+function FormBootstrap(){
 
  //state locali:
  const [attivitaNome, setAttivitaNome]= useState()
@@ -111,4 +111,4 @@ useEffect(()=>{
   );
 }
 
-export default BasicExample;
+export default FormBootstrap;

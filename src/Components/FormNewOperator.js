@@ -49,7 +49,8 @@ const FormNewOperator = ()=>{
   checkUser()
  },[name, email, password, view])
 
-    return params.created==="false" ? <>
+    return params.created==="false" ? 
+    <>
         <label>
          {nome} 
           stai registrando un nuovo operatore
