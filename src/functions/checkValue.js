@@ -30,3 +30,23 @@ export const checkEmail = (email)=>{
        
      }
   }
+
+  export const checkProductSelected = (value, txt1, txt2)=>{
+   if(value===""){
+      return txt2
+   }
+   return txt1
+  }
+
+  export const checkTel = (tel)=> {
+   let response
+   tel.length!==10 ? response="Numero di telefono non valido, deve essere composto da 10 cifre" : response=""
+   return response  
+}
+
+export const checkDate =(date)=>{
+   if(date){
+      return true
+   }
+   return false
+}

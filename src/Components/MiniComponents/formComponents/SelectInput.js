@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 
-const SelectInput = ({inputItems, itemSelectFun})=>{
-
-    return(<>
+const SelectInput = ({inputItems, itemSelectFun, setAlert})=>{
+  const [validated, setValidated] = useState(false);
+  const editClass = (value)=>{
+    value===""? setValidated(false) : setValidated(true)
+    }
+   
+   return(
+    <>
       <label for="listItemBox">tipo di prodotto:</label>
       <Form.Select 
        aria-label="Default select example"
        id="listItemBox"
-       onChange={()=>itemSelectFun(document.getElementById("listItemBox").value)}
+       onChange={(e)=>{
+        setAlert(e.target.value)
+        itemSelectFun(e.target.value)
+        editClass(e.target.value)
+      }}
+       className={validated===false? "is-invalid" : "is-valid"}
        >
       <option></option>
       {
@@ -23,6 +33,7 @@ const SelectInput = ({inputItems, itemSelectFun})=>{
                  </option>
         })
       }
+    
     </Form.Select>
     </>
     )

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOrdiniDaEvadere } from "../Store/StoreUser";
 import { Ordine } from "../Model/Ordine";
 import { cleanInput } from "../functions/cleanInput";
+import Prova from "../Components/MiniComponents/formComponents/Prova"
 
 import FormToCustom from "./FormToCustom";
 import NameInput from "./MiniComponents/formComponents/NameInput"
@@ -15,7 +16,7 @@ import DateInput from "./MiniComponents/formComponents/DateInput";
 import ButtonInput from "./MiniComponents/formComponents/ButtonInput"
 import TextElement from "./MiniComponents/TextElement"
 import AlertElement from "./MiniComponents/AlertElement";
-import { checkNome, checkEmail, checkPassword } from "../functions/checkValue";
+import { checkNome,checkDate, checkTel, checkEmail, checkPassword, checkProductSelected } from "../functions/checkValue";
 
 const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPrincipali})=>{
     const dispatch = useDispatch()
@@ -68,9 +69,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
 
     useEffect(()=>{
      setTimeout(()=>setView(false), 1500)
-     console.log(priceSelected)
-     priceSelected===""? setAlert("Prodotto non selezionato") : setAlert("")
-    },[orderNumber, priceSelected])
+     },[orderNumber,name,date,description, priceSelected, tel])
 
     return(
         <>
@@ -206,24 +205,34 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
               }}
               />,
               <TelephoneInput
-               setTel={(e)=>setTel(e.target.value)}
+               setTel={(e)=>{
+                setTel(e.target.value)
+                setAlert(checkTel(e.target.value))
+                }}
               />,
               <SelectInput
                inputItems={kindProduct}
-               itemSelectFun={(e)=>{setPriceSelected(e)
-              }}
+               itemSelectFun={(e)=>{setPriceSelected(e)}}
+               setAlert={(e)=>setAlert(checkProductSelected(e,"","Prodotto non selezionato"))}
               />,
               <NumeberInput
               description="quantità"
-              setValue={(e)=>setCount(priceSelected*e)}
+              setValue={(e)=>{
+                setCount(priceSelected*e)
+                setAlert(e<=0? "inserisci quantità prodotto":"")
+              }}
               />,
               <TextAreaInput
               description="inserisci descrizione prodotto"
-              changeDescription={(e)=>setDescription(e.target.value)}
+              changeDescription={(e)=>{
+                setDescription(e.target.value)
+                setAlert(e.target.value.length<1? "inserisci descizione prodotto":"")}
+              }
               />,
               <DateInput
               description="data di ritiro"
               setDate={(e)=>setDate(e.target.value)}
+              ext={()=>checkDate(date)}
               />,
               <TextElement
               primaryText={count.toString()+"$"}
@@ -234,6 +243,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
             }
       >
       </FormToCustom>
+      
       </>
     )
 }
