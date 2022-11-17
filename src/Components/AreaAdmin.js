@@ -4,26 +4,45 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { filtra } from "../functions/filtra";
 import { setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi } from "../Store/StoreUser";
+import { useState } from "react";
+import { useEffect } from "react";
+import AreaAdminCSS from "./StyleComponents/AreaAdmin.module.css"
 
 const AreaAdmin = ()=>{
     const {nome, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
     const data = new Date()
+    const [day, setDay]=useState({
+        day:data.getDate(), 
+        month:data.getMonth()+1, 
+        year: data.getFullYear()
+    });
+    const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const dispatch = useDispatch()
     const evadiOrdine = (el, elenco)=>{
         dispatch(filtraOrdiniDaEvadere(filtra(el,elenco)[0]))
         dispatch(setOrdiniEvasi(filtra(el,elenco)[1]))
     }
+    
+    useEffect(()=>{
+     ordiniDaEvadere.length>0 ? setAdvisor("") : setAdvisor("Nessun ordine da evadere")
+    },[ordiniDaEvadere.length])
+  
 
     return(
-    <main>
+    <main className={AreaAdminCSS.main}>
      <h4> Ciao <strong>{nome}</strong></h4>
-     <p>Benvenuto nella tua homepage, in questa pagina puoi monitorare la panoramica
-         dei tuoi ordini da evadere e degli ultimi 50 ordini evasi
+     <p>
+      Benvenuto nella tua homepage, monitora i tuoi ordini da evadere.
      </p>
-    {data.toString()}
-    <section>
-     <p>ordini da evadere:</p>
-     <ul id="ordContainer">
+    
+    <section className={AreaAdminCSS.section}>
+    {`
+     ${day.day}/${day.month}/${day.year}
+     `
+    }
+     <h5 className={AreaAdminCSS.h5}>Ordini da evadere:</h5>
+     <ul className={AreaAdminCSS.ul}>
+      <li>{advisor}</li>
     {
         ordiniDaEvadere.map(ord=>{
             return(
@@ -46,7 +65,7 @@ const AreaAdmin = ()=>{
     </ul>
     </section>
     <section>
-     <p>ordini evasi:</p>
+     <h5>Ordini evasi:</h5>
      <ul>
     {
         ordiniEvasi.map(ord=>{

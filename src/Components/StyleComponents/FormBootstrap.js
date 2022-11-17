@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import FormToCustom from "../FormToCustom"
 import { useSelector } from 'react-redux';
 import {setNome, setEmail, setPassword, setId, setLogged} from "../../Store/StoreUser"
 import {useDispatch } from "react-redux";
 import {validateEmail, validatePassword, validateNomeAttivita} from "../../functions/submitUser"
 import { checkNome, checkEmail, checkPassword } from "../../functions/checkValue";
 import { Attivita } from "../../Model/Attivita"
+
+import NameInput from "../MiniComponents/formComponents/NameInput"
+import EmailInput from "../MiniComponents/formComponents/EmailInput"
+import PasswordInput from '../MiniComponents/formComponents/Password';
 
 
 function FormBootstrap(){
@@ -46,68 +49,34 @@ function FormBootstrap(){
 
 useEffect(()=>{
  checkUser()
- console.log(alert)
 },[attivitaNome, attivitaEmail, attivitaPassword])
   
   return (
-    <Form onSubmit={(e)=>{
-      e.preventDefault()
-      submitUser(e)
-    }}>
-       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>
-          Nome
-        </Form.Label>
-        <Form.Control 
-         type="text" 
-         placeholder="Nome" 
-         onChange={e=>{
-          setAlert(checkNome(e.target?.value))
-          setAttivitaNome(e.target?.value)
+    <FormToCustom
+      triggerName="Salva"
+      submitFun={(e)=>submitUser(e)}
+      input={[
+        <NameInput
+         setName={(e)=>{
+          setAttivitaNome(e.target.value)
+          setAlert(checkNome(e.target.value))}}
+        />,
+        <EmailInput
+         setEmail={(e)=>{
+          setAttivitaEmail(e)
+          setAlert(checkEmail(e))
         }}
-         value={attivitaNome}
-         required
-         />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label >Email address</Form.Label>
-        <Form.Control 
-         type="email" 
-         placeholder="Inserisci email"
-         onChange={e=>{
-          setAlert(checkEmail(e.target?.value))
-          setAttivitaEmail(e.target?.value)
-        }} 
-         value={attivitaEmail}
-         required
-         />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label 
-        >
-          Password
-          </Form.Label>
-        <Form.Control 
-         type="password" 
-         placeholder="Password" 
-         required
-         onChange={e=>{
-          setAlert(checkPassword(e.target?.value))
-          setAttivitaPassword(e.target.value)
-        }}
-         value={attivitaPassword}
-         />
-      </Form.Group>
-      <div>
-         <span>
-             {alert}
-          </span>
-      </div>
-      <Button variant="primary" type="submit">
-        Salva
-      </Button>
-    </Form>
+        />,
+        <PasswordInput
+         setPassword={(e)=>{
+          setAttivitaPassword(e)
+          setAlert(checkPassword(e))
+         }}
+        />,
+        <p>{alert}</p>
+        ]
+        }
+    />
   );
 }
 

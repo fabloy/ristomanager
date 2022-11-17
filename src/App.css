@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
 }
+:root{
+  --primary:#645cff;
+  --white:#fff
+}
 
 body{
   background-color: #edede9;
@@ -12,7 +16,9 @@ a{
   list-style: none;
   text-decoration: none;
 }
-
+ul{
+  padding: 0;
+}
 form{
   margin-top: 20px;
   padding: 2rem;
@@ -48,9 +54,8 @@ form input{
   justify-content:flex-start;
   align-items:flex-start;
   max-height: 45vh;
-  border: solid 1px black;
   overflow: scroll;
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
 }
 
 .pointer{

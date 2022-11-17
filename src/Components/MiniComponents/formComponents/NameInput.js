@@ -15,7 +15,7 @@ const NameInput = ({setName, setAlert, msg})=>{
        }
     return(
         <Form.Group className="mb-3" controlId="formBasicEmail" >
-          <Form.Label>Nome cliente</Form.Label>
+          <Form.Label>Nome </Form.Label>
           <br></br>
            <i style={{"font-size":".8rem"}}>
              {msg}

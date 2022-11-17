@@ -6,6 +6,7 @@ const FormToCustom = ({input, submitFun, triggerName})=>{
     return(
         <Form
         onSubmit={(e)=>{
+            console.log("ONsubmit",e)
             submitFun(e)
             }}>
          {input}

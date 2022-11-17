@@ -13,6 +13,7 @@ const initialState = {
     password:"",
     ordiniDaEvadere:[],
     ordiniEvasi:[],
+    operatoriAggiunti:[],
     id,
     idOrd:1
 }
@@ -50,6 +51,10 @@ const storeUser=createSlice({
         },
         setAdmin:(state,action)=>{
             state.admin=action.payload
+        },
+        setAggiungiOperatore:(state, action)=>{
+            console.log(action.payload)
+            state.operatoriAggiunti=[...state.operatoriAggiunti, action.payload]
         }
     }
 })
@@ -67,6 +72,7 @@ export const {
     setAdmin, 
     setOrdiniDaEvadere, 
     setOrdiniEvasi,
-    filtraOrdiniDaEvadere} = storeUser.actions
+    filtraOrdiniDaEvadere,
+    setAggiungiOperatore} = storeUser.actions
 
 

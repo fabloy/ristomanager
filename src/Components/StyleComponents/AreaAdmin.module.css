@@ -1,0 +1,20 @@
+main{
+    text-align: center;
+    padding: .5rem;
+}
+
+h5{
+    color: var(--primary);
+    text-align: left;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items:flex-start;
+    max-height: 45vh;
+    overflow: scroll;
+    margin: 0 auto 1rem auto;
+    list-style: none;
+  }
