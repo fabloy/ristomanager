@@ -4,7 +4,7 @@
   padding: 0;
 }
 :root{
-  --primary:#645cff;
+  --primary:hsl(210, 10%, 23%);
   --white:#fff
 }
 
@@ -15,6 +15,7 @@ body{
 a{
   list-style: none;
   text-decoration: none;
+  color: var(--primary);
 }
 ul{
   padding: 0;
@@ -27,6 +28,9 @@ form{
   min-height: 40vh;
   background-color: wheat;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 form input{
   display: block;

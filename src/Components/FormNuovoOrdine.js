@@ -20,15 +20,6 @@ import { checkNome,checkDate, checkTel, checkEmail, checkPassword, checkProductS
 const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPrincipali})=>{
     const dispatch = useDispatch()
     const {idOrd, nome:nomeOperatore}=useSelector(state=>state)
-    //state locali:
-    const [name, setName]=useState()
-    const [orderNumber, setOrderNumber]=useState(idOrd)
-    const [date, setDate]=useState()
-    const [description, setDescription]=useState()
-    const [ingredients, setIngredients]=useState()
-    const [tel, setTel]=useState()
-    const [view, setView]=useState()
-    const [alert, setAlert]=useState()
     const kindProduct=[{
       name:"Torta",
       price:20.00
@@ -41,7 +32,17 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
       price:7.30
     } 
   ]
+    //state locali:
+    const [name, setName]=useState()
+    const [orderNumber, setOrderNumber]=useState(idOrd)
+    const [date, setDate]=useState()
+    const [description, setDescription]=useState()
+    const [ingredients, setIngredients]=useState()
+    const [tel, setTel]=useState()
+    const [view, setView]=useState()
+    const [alert, setAlert]=useState()
     const [priceSelected, setPriceSelected] = useState("")
+    const [nameProductSelected, setNameProductSelected] = useState()
     const [count, setCount]= useState("")
   
     let ordineGenerato
@@ -49,9 +50,11 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
         e.preventDefault()
         if(name && date && description && tel.length===10){
          setOrderNumber(orderNumber+1)
-         ordineGenerato = new Ordine(name, tel, description, ingredients, date, orderNumber)
+         ordineGenerato = new Ordine(name, tel, description, ingredients, date,nameProductSelected, orderNumber)
+         console.log(ordineGenerato.nomeCliente, name)
          dispatch(setOrdiniDaEvadere({
-            'nome':ordineGenerato.nome, 
+            'nomeCliente':ordineGenerato.nomeCliente,
+            'nomeProdotto':ordineGenerato.nomeProdotto,
             'ordine':ordineGenerato.id,
             'telefono':ordineGenerato.telefono,
             'data':ordineGenerato.data,
@@ -65,10 +68,19 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
         }
     }
 
+   let productNameFun = ()=>{
+    let product = kindProduct.filter((f)=>{
+      return f.price===Number(priceSelected);
+    })
+    let productFind = product[0]
+    return productFind?.name
+    }
+
     useEffect(()=>{
      view && window.scroll(0, -document.body.offsetHeight)
-     setTimeout(()=>setView(!view), 3000)
-     },[orderNumber,name,date,description, priceSelected, tel])
+     setTimeout(()=>setView(false), 3000)
+     setNameProductSelected(productNameFun())
+     },[view, priceSelected])
      
     return(
      
@@ -83,9 +95,11 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
         }
       <FormToCustom
        triggerName="Invia ordine"
-       submitFun={(e)=>invioNuovoOrdine(e)}
+       submitFun={(e)=>{
+        invioNuovoOrdine(e)}
+      }
        input={[
-              <h3>Nuovo Ordine n.{idOrd?.toString()}</h3>,
+              <h3>Ordine n.{idOrd?.toString()}</h3>,
               <NameInput 
                setName={(e)=>{
                 setName(e.target.value)
@@ -100,7 +114,9 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
               />,
               <SelectInput
                inputItems={kindProduct}
-               itemSelectFun={(e)=>{setPriceSelected(e)}}
+               itemSelectFun={(e)=>{
+                setPriceSelected(e)
+              }}
                setAlert={(e)=>setAlert(checkProductSelected(e,"","Prodotto non selezionato"))}
               />,
               <NumeberInput

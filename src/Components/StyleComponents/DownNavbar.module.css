@@ -1,0 +1,19 @@
+.nav{
+    position: fixed;
+    margin: 0 auto;
+    left: 50%;
+    bottom: 1%;
+    transform: translate(-50%);
+}
+.iconWrapper{
+    padding: 1rem;
+    color: black;
+    margin: 0 auto;
+    background: rgba(128, 128, 128, 0.487);
+    border-radius: 50%;
+    transition: padding 2s;
+}
+.iconWrapper:active{
+    background: #6c757d;
+    padding: 1.6rem;
+}

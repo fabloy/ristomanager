@@ -1,14 +1,25 @@
-main{
+.main{
     text-align: center;
     padding: .5rem;
-}
+    min-height: 130vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+ }
+
+ .linkWrapper{
+  margin-bottom: 1.2rem;
+  margin-top: 1.2rem;
+ }
 
 h5{
-    color: var(--primary);
-    text-align: left;
+    color: #edede9;
 }
-
-ul{
+p{
+    font-size: .8rem;
+    margin-bottom: .3rem;
+}
+.ul{
     display: flex;
     flex-wrap: wrap;
     justify-content:center;
@@ -17,4 +28,53 @@ ul{
     overflow: scroll;
     margin: 0 auto 1rem auto;
     list-style: none;
+    min-height: 12rem;
+  }
+  .section:nth-child(even){
+    background-color: rgba(128, 128, 128, 0.487);
+    padding: 5%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  main svg:first-of-type{
+    color: #353b41;
+    height: 1.8rem;
+  }
+  .section:nth-child(odd){
+   background-color: wheat;
+    padding: 5%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .section h5{
+    color: #353b41;
+  }
+  .ordDaEvadere{
+    background-color: #353b41;
+    padding: 5px;
+    padding-bottom: 15px;
+    border-radius: 8%;
+    min-width: 55%;
+    box-shadow: 10px 10px 5px  rgba(128, 128, 128, 0.487);
+    margin-bottom: 15px;
+  }
+  .ordDaEvadere h6{
+    color: white;
+    text-transform: uppercase;
+    font-size: 1rem;
+  
+  }
+  .ordDaEvadere p{
+    font-size: 1rem;
+    max-width: 85%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    color: white;
+  }
+ 
+  .buttonDoneOrd{
+    border-radius: 5px;
+    background-color: #b8b8b6;
+    width: 60%;
   }

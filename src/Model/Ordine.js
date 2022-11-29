@@ -1,10 +1,11 @@
 export class Ordine{
-    constructor(nome, telefono, descrizione, ingredienti, data, id){
-        this.nome=nome;
+    constructor(nomeCliente, telefono, descrizione, ingredienti, data,nomeProdotto, id){
+        this.nomeCliente=nomeCliente;
         this.telefono=telefono
         this.descrizione=descrizione;
         this.ingredienti=ingredienti;
-        this.data=data
+        this.data=data;
+        this.nomeProdotto = nomeProdotto;
         this.id=id;
      }
     getDettagliOrdine(){

@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 
 const SelectInput = ({inputItems, itemSelectFun, setAlert})=>{
   const [validated, setValidated] = useState(false);
+  const [nameProductSelected, setNameProductSelected] = useState()
+
   const editClass = (value)=>{
     value===""? setValidated(false) : setValidated(true)
     }
@@ -14,6 +16,7 @@ const SelectInput = ({inputItems, itemSelectFun, setAlert})=>{
        aria-label="Default select example"
        id="listItemBox"
        onChange={(e)=>{
+        console.log(e.target.value)
         setAlert(e.target.value)
         itemSelectFun(e.target.value)
         editClass(e.target.value)
@@ -26,7 +29,6 @@ const SelectInput = ({inputItems, itemSelectFun, setAlert})=>{
           return <option
                   key={index} 
                   value={i.price}
-                  
                   >
                   {i.name}
                   

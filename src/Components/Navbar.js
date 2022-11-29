@@ -9,7 +9,13 @@ import { showMenu } from "../functions/showMenu"
 
 
 const Navbar = ({logged})=>{
-  let itemsLogged = ["logout"]
+  let itemsLogged = ["logout",<FontAwesomeIcon 
+  icon={faCircleInfo}
+  className={`pointer icon` }
+  onClick={()=>{
+    setShowAdv(!showAdv)
+  }}
+  />]
   let itemsNotLogged = ["registrazione","login"]
   const [showAdv, setShowAdv] = useState(false)
   const [openOrClose, setOpenOrClose] = useState(false)
@@ -22,9 +28,9 @@ const Navbar = ({logged})=>{
     return(
         <nav className={NavbarCSS.nav}>
         
-        <h1>
-          Ristomanager
-        </h1>
+        <div>
+         <img src="" alt="" />
+        </div>
         <FontAwesomeIcon 
          icon={faBars}
          className={NavbarCSS.hamburger}
@@ -42,15 +48,8 @@ const Navbar = ({logged})=>{
            itemsLogged={itemsLogged}
            itemsNotLogged={itemsNotLogged}
           />
-          <aside>
-           <FontAwesomeIcon 
-            icon={faCircleInfo}
-            className={`pointer icon` }
-            onClick={()=>{
-              setShowAdv(!showAdv)
-            }}
-            />
-           </aside>
+           
+           
            
           </section>
 

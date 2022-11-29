@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 
 const ButtonInput = ({triggerName})=>{
     return(
-        <Button variant="primary" type="submit">
+        <Button variant="secondary" type="submit">
           {triggerName}
          </Button>
     )

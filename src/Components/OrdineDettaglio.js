@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import OrdineDettaglioCSS from "../Components/StyleComponents/OrdineDettaglio.module.css"
+import crostata from "../images/crostata.jpg"
 
 const OrdineDettaglio = ()=>{
  const [ordine, setOrdine] = useState()
  const params = useParams()
  const {ordiniDaEvadere} = useSelector(state=>state)
+
+ const backgroundCSSRules = {
+    backgroundImage: `url(${crostata}`, 
+    backgroundRepeat:"no-repeat",
+    backgroundSize:"cover",
+}
  
  useEffect(()=>{
      let ordToShow = ordiniDaEvadere.filter(el=>el.ordine.toString()===params.id)
@@ -14,16 +22,26 @@ const OrdineDettaglio = ()=>{
     },[params.id])
 
     return(
-        <div>
-            {console.log(ordine)}
+        <main>
+            <section className={OrdineDettaglioCSS.wrapper}
+             style={backgroundCSSRules}>
+            <div>
             <h2>Ordine n: {ordine?.ordine}</h2>
             <p>
-             {`Cliente: ${ordine?.nome}`}
+             Cliente: <b>{ordine?.nomeCliente}</b>
              <br></br>
-             {`Descrizione Prodotto: ${ordine?.descrizione}`}
-             {`telefono: ${ordine?.telefono}`}
+             Prodotto: {<b>{ordine?.nomeProdotto}</b>}<br></br>
+             Descrizione Prodotto: {<b>{ordine?.descrizione}</b>}<br></br>
+             Telefono: <b>{ordine?.telefono}</b>
+             <br></br>
+             Data consegna: <b>{ordine?.data}</b>
             </p>
-        </div>
+            </div>
+        </section>
+        </main>
     )
 }
 export default OrdineDettaglio
+
+
+

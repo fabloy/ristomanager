@@ -27,7 +27,7 @@ import { filtra } from "../functions/filtra";
                     <>
                      <li key={index}>
                          ordine n. {el.ordine}
-                         prodotto: {el.descrizione} 
+                         prodotto: {el.nomeProdotto} 
                      <button onClick={()=>{
                         evadiOrdine(el,elenco)
                        }}>

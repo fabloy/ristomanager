@@ -17,6 +17,7 @@ import FormNuovoOrdine from './Components/FormNuovoOrdine';
 import FormRegistrazione from './Components/FormRegistrazione';
 import FormNewOperator from './Components/FormNewOperator';
 import Advisor from './Components/StyleComponents/Advisor';
+import DownNavbar from './Components/DownNavbar';
 
 
 
@@ -65,7 +66,7 @@ function App() {
           }/> 
   
        </Routes>
-       
+       <DownNavbar></DownNavbar>
       </BrowserRouter>
 
     </div>
