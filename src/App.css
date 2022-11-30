@@ -5,13 +5,16 @@
 }
 :root{
   --primary:hsl(210, 10%, 23%);
+  --secondary:#6c757d;
   --white:#fff
 }
 
 body{
   background-color: #edede9;
 }
-
+.App{
+  max-height: 100vh;
+}
 a{
   list-style: none;
   text-decoration: none;
@@ -21,12 +24,11 @@ ul{
   padding: 0;
 }
 form{
-  margin-top: 20px;
   padding: 2rem;
   margin: 3rem auto;
   width: 70%;
   min-height: 40vh;
-  background-color: wheat;
+  background-color: rgba(245, 222, 179, 0.757);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -81,4 +83,27 @@ form input{
   z-index: 80;
   position: absolute;
   display: none;
+}
+
+
+
+.myVideo {
+  top:0;
+  position: fixed;
+   z-index: 98;
+   height: 100%;
+}
+
+
+@media screen and (min-width:500px){
+  .myVideo{
+  width: 100%;
+  height: auto;
+  transform: translateY(-20%);
+  }
+}
+@media screen and (min-width:1024px){
+  .myVideo{
+    transform: translateY(-45%);
+    }
 }

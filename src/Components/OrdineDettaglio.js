@@ -6,19 +6,19 @@ import crostata from "../images/crostata.jpg"
 
 const OrdineDettaglio = ()=>{
  const [ordine, setOrdine] = useState()
+ const [opacity, setOpacity]=useState("0")
  const params = useParams()
  const {ordiniDaEvadere} = useSelector(state=>state)
 
  const backgroundCSSRules = {
     backgroundImage: `url(${crostata}`, 
     backgroundRepeat:"no-repeat",
-    backgroundSize:"cover",
+    backgroundSize:"cover"
 }
  
  useEffect(()=>{
      let ordToShow = ordiniDaEvadere.filter(el=>el.ordine.toString()===params.id)
      setOrdine(...ordToShow)
-     console.log(ordToShow, ordine)
     },[params.id])
 
     return(
@@ -37,6 +37,7 @@ const OrdineDettaglio = ()=>{
              Data consegna: <b>{ordine?.data}</b>
             </p>
             </div>
+            
         </section>
         </main>
     )

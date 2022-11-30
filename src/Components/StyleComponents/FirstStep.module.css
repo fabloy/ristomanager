@@ -4,14 +4,16 @@ h2{
 .boxContainer{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
      margin: 0 auto;
      padding: 15px;
+     margin-top: 15vh;
     }
 .boxToSelect{
     margin: 10px;
     border-radius: 10px;
-    /* flex: 85%; */
-    min-height: 40vh;
+    flex: 60%;
+    min-height: 35vh;
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center;
@@ -49,7 +51,7 @@ h2{
 }
 
     
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
       .boxContainer{
         flex-direction:row;
         justify-content:center;
@@ -57,8 +59,32 @@ h2{
         }
         .boxToSelect{
             box-shadow: 0px 0px 0px 0px rgba(125,125,125,0.94);
-            width: 35%;
-            min-height: 50vh;
+           flex: 60%;
+            min-height: 40vh;
+           
+        }
+    } */
+
+    @media screen and (min-width: 768px) {
+        .boxContainer{
+            padding-left: 15%;
+            padding-right: 15%;
+            flex-direction:row;
+            justify-content:center;
+            }
+        
+        .boxToSelect{
+            box-shadow: 0px 0px 0px 0px rgba(125,125,125,0.94);
+           flex: 60%;
+            min-height: 40vh;
            
         }
     }
+
+    @media screen and (min-width: 1024px) {
+        .boxToSelect{
+            flex: 30%;
+             min-height: 70vh;
+         }
+    }
+    

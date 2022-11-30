@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAdmin } from "../Store/StoreUser";
 import FirstStepCSS from "./StyleComponents/FirstStep.module.css"
-// import BtnCustom from "./style/BtnCustom";
+
 
 
 const FirstStep = ()=>{
@@ -45,7 +45,7 @@ const FirstStep = ()=>{
            Area Amministratore
          </h2>
       </Link>
-        
+      
     </main>
     )
     :

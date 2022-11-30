@@ -11,7 +11,8 @@ import { Attivita } from "../../Model/Attivita"
 import NameInput from "../MiniComponents/formComponents/NameInput"
 import EmailInput from "../MiniComponents/formComponents/EmailInput"
 import PasswordInput from '../MiniComponents/formComponents/Password';
-
+import DemoVideo from "../../images/demo.mp4"
+import FormBoostrapCSS from "../StyleComponents/FormBoostrap.module.css"
 
 function FormBootstrap(){
 
@@ -52,7 +53,8 @@ useEffect(()=>{
 },[attivitaNome, attivitaEmail, attivitaPassword])
   
   return (
-    <FormToCustom
+    <main className={FormBoostrapCSS.formWrapper}>
+     <FormToCustom
       triggerName="Salva"
       submitFun={(e)=>submitUser(e)}
       input={[
@@ -77,6 +79,12 @@ useEffect(()=>{
         ]
         }
     />
+    
+    <video autoPlay muted loop className="myVideo">
+     <source src={DemoVideo} type="video/mp4"/>
+    </video>
+  
+    </main>
   );
 }
 

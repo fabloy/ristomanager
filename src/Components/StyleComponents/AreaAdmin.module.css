@@ -22,8 +22,9 @@ p{
 .ul{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content:center;
-    align-items:flex-start;
+    align-items:center;
     max-height: 45vh;
     overflow: scroll;
     margin: 0 auto 1rem auto;

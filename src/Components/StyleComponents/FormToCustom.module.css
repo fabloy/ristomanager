@@ -1,0 +1,48 @@
+
+.formCustom{
+   width: 80vw;
+   position: relative;
+   z-index: 99;
+
+}
+.formCustom div label, .formCustom p{
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-style: italic;
+}
+ .formCustom button{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10%;
+}
+
+
+@media screen and (min-width: 768px) {
+    .formCustom{
+        width: 45vw;
+       margin-top: 20vh;
+     }
+    
+     .formCustom>button{
+        padding: .8rem;
+     }
+     .formCustom div input{
+        padding: .8rem;
+     }
+}
+
+@media screen and (min-width: 1024px) {
+    .formCustom{
+       width: 35%;
+       position: relative;
+       z-index: 100;
+     }
+     .formCustom>button{
+        margin-top: 8%;
+     }
+     .formCustom div input{
+        padding: .5rem;
+     }
+
+     
+}
