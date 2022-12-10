@@ -88,6 +88,9 @@ const AreaAdmin = ()=>{
      <h5>Ordini evasi</h5>
     
      <ul className={AreaAdminCSS.ul}>
+       { 
+       ordiniEvasi.length<1 && <li>Nessun ordine evaso</li>
+       } 
     {
         ordiniEvasi.map(ord=>{
             return <li>

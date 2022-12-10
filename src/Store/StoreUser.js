@@ -43,6 +43,11 @@ const storeUser=createSlice({
         filtraOrdiniDaEvadere:(state,action)=>{
          state.ordiniDaEvadere=action.payload
         },
+        editOrdiniDaEvadere:(state, action)=>{
+        state.ordiniDaEvadere = state.ordiniDaEvadere.map((ord)=>{
+               return ord.ordine === action.payload.ordine? ord={...ord, ...action.payload} : ord = ord
+              })
+        },
         setOrdiniEvasi:(state,action)=>{
          state.ordiniEvasi=[...state.ordiniEvasi, ...action.payload]
         },
@@ -72,6 +77,7 @@ export const {
     setAdmin, 
     setOrdiniDaEvadere, 
     setOrdiniEvasi,
+    editOrdiniDaEvadere,
     filtraOrdiniDaEvadere,
     setAggiungiOperatore} = storeUser.actions
 

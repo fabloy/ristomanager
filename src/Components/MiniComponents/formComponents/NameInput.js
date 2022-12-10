@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
 
-const NameInput = ({setName, setAlert, msg})=>{
+const NameInput = ({setName, setAlert, msg, val, req})=>{
     const [validated, setValidated] = useState(false);
     const [value, setValue]=useState("")
     useEffect(()=>{
@@ -13,6 +13,7 @@ const NameInput = ({setName, setAlert, msg})=>{
        let secondCheck =  isNaN(value)? true : false
        firstCheck&&secondCheck? setValidated(true) : setValidated(false)
        }
+
     return(
         <Form.Group className="mb-3" controlId="formBasicEmail" >
           <Form.Label>Nome </Form.Label>
@@ -22,15 +23,17 @@ const NameInput = ({setName, setAlert, msg})=>{
             </i>
           <Form.Control
            type="text" 
-           placeholder="Inserisci nome" 
+           placeholder={val? val : "Inserisci nome"} 
            onChange={(e)=>{setName(e)
             setValue(e.target.value)
            }}
            onFocus={(e)=>{
             setAlert(e)
         }}
+           nome="nome"
            className={validated===false? "is-invalid" : "is-valid"}
            required
+           
            />
         </Form.Group>
     )

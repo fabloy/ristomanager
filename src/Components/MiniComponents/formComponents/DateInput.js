@@ -3,14 +3,6 @@ import Form from 'react-bootstrap/Form';
 
 const DateInput = ({description, setDate, ext})=>{
     const [validated, setValidated] = useState(false);
-    // const handleSubmit = (event) => {
-    //   const form = event?.currentTarget;
-    //   if (form.checkValidity() === false) {
-    //     setValidated(false)
-    //     console.log( event?.currentTarget.checkValidity())
-    //   }
-    //   setValidated(true);
-    // };
     const editClass = ()=>{
      ext===false? setValidated(false) : setValidated(true)
     }
@@ -25,7 +17,6 @@ const DateInput = ({description, setDate, ext})=>{
               <Form.Control 
               type="invalid"
                type="date" 
-               placeholder={description}
                className={validated===false? "is-invalid" : "is-valid"} 
                onChange={(e)=>{
                 setDate(e)

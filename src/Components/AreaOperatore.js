@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { filtra } from "../functions/filtra";
 import { setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi } from "../Store/StoreUser";
+import AreaOperatoreCSS from "../Components/StyleComponents/AreaOperatore.module.css"
+
 
 const AreaOperatore = ()=>{
     const {nome, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
@@ -14,13 +16,13 @@ const AreaOperatore = ()=>{
         dispatch(setOrdiniEvasi(filtra(el,elenco)[1]))
     }
 
+
     return(
-    <main>
+    <main className={AreaOperatoreCSS.main}>
      <h4> Ciao <strong>{nome}</strong></h4>
      <p>Benvenuto nella tua homepage, in questa pagina puoi monitorare la panoramica
-         dei tuoi ordini da evadere e degli ultimi 50 ordini evasi
+         dei tuoi ordini da evadere
      </p>
-    {data.toString()}
     <section>
      <p>ordini da evadere:</p>
      <ul>
@@ -54,6 +56,7 @@ const AreaOperatore = ()=>{
         })
     }
     </ul>
+
     </section>
     <section>
         <div>

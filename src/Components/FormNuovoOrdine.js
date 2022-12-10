@@ -44,13 +44,14 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     const [priceSelected, setPriceSelected] = useState("")
     const [nameProductSelected, setNameProductSelected] = useState()
     const [count, setCount]= useState("")
+    const [quantity, setQuantity] = useState()
   
     let ordineGenerato
     const invioNuovoOrdine = (e)=>{
         e.preventDefault()
         if(name && date && description && tel.length===10){
          setOrderNumber(orderNumber+1)
-         ordineGenerato = new Ordine(name, tel, description, ingredients, date,nameProductSelected, orderNumber)
+         ordineGenerato = new Ordine(name, tel, description, ingredients, date,nameProductSelected,quantity, count, orderNumber)
          console.log(ordineGenerato.nomeCliente, name)
          dispatch(setOrdiniDaEvadere({
             'nomeCliente':ordineGenerato.nomeCliente,
@@ -60,6 +61,8 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
             'data':ordineGenerato.data,
             'descrizione':ordineGenerato.descrizione,
             'ingredienti principali':ordineGenerato.ingredienti,
+            'quantita':ordineGenerato.quantita,
+            'prezzo':ordineGenerato.prezzo
           }))
           setView(true)
           cleanInput()
@@ -124,6 +127,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
               setValue={(e)=>{
                 setCount(priceSelected*e)
                 setAlert(e<=0? "inserisci quantità prodotto":"")
+                setQuantity(e)
               }}
               />,
               <TextAreaInput

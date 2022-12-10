@@ -2,7 +2,7 @@ import React from "react";
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
 
-const TelephoneInput = ({setTel,msg})=>{
+const TelephoneInput = ({setTel,msg, val})=>{
   const [validated, setValidated] = useState(false);
   const editClass = (e)=>{
       e.target.value.length!==10? setValidated(false) : setValidated(true)
@@ -16,7 +16,7 @@ const TelephoneInput = ({setTel,msg})=>{
             </i>
           <Form.Control 
            type="number" 
-           placeholder="inserisci numero di telefono" 
+           placeholder={val? val : "Inserisci numero di telefono" } 
            onChange={(e)=>{
             setTel(e)
             editClass(e)}

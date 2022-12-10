@@ -2,29 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import OrdineDettaglioCSS from "../Components/StyleComponents/OrdineDettaglio.module.css"
-import crostata from "../images/crostata.jpg"
+import EditOrder from "./EditOrder";
+import { showOrderDetail } from "../functions/ShowOderDetail";
 
 const OrdineDettaglio = ()=>{
  const [ordine, setOrdine] = useState()
  const [opacity, setOpacity]=useState("0")
  const params = useParams()
  const {ordiniDaEvadere} = useSelector(state=>state)
+ const [showEdit, setShowEdit] = useState(false)
 
- const backgroundCSSRules = {
-    backgroundImage: `url(${crostata}`, 
-    backgroundRepeat:"no-repeat",
-    backgroundSize:"cover"
-}
+
  
  useEffect(()=>{
      let ordToShow = ordiniDaEvadere.filter(el=>el.ordine.toString()===params.id)
      setOrdine(...ordToShow)
+     showOrderDetail()
     },[params.id])
 
     return(
         <main>
-            <section className={OrdineDettaglioCSS.wrapper}
-             style={backgroundCSSRules}>
+          {!showEdit ? <section className={OrdineDettaglioCSS.wrapper}>
             <div>
             <h2>Ordine n: {ordine?.ordine}</h2>
             <p>
@@ -36,9 +34,21 @@ const OrdineDettaglio = ()=>{
              <br></br>
              Data consegna: <b>{ordine?.data}</b>
             </p>
+            <button
+             onClick={()=>setShowEdit(true)}
+             >
+                Modifica
+            </button>
             </div>
             
         </section>
+        :
+        <EditOrder
+        nOrder={ordine?.ordine}
+        ></EditOrder>
+    }
+        
+        
         </main>
     )
 }
