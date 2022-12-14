@@ -32,6 +32,23 @@ p{
     list-style: none;
     min-height: 12rem;
   }
+  .linkWrapper div{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 60%;
+    justify-content:center;
+  }
+  .linkWrapper div a {
+    font-size: 1rem;
+    transition: .4s;
+    margin: 5px;
+    width: 100%;
+    }
+    .linkWrapper div a button{
+      width: 100%;
+    }
+
   .section:nth-child(even){
     background-color: rgba(128, 128, 128, 0.487);
     padding: 5%;
@@ -104,17 +121,25 @@ p{
       overflow: auto;
     }
 
+    .linkWrapper div a {
+      margin: 5px;
+      width: 45%;
+      }
+
     .ordDaEvadere{
     min-width: 10rem;
     padding: 10px;
     max-height: 16rem;
     text-align: center;
     }
+
   }
 
   @media screen and (min-width: 1024px) {
     .main{
       padding-top: 18vh;
+      min-height: 100vh;
+      padding-bottom: 0px;
     }
     .main p{
      margin: 0 auto;
@@ -124,27 +149,24 @@ p{
       width: 100%;
       margin: 0;
     }
-    .section{
-      max-height: 30vh;
-    }
-    .linkWrapper{
-      max-height: 10vh;
-      margin-top: 10vh;
-    }
-    .linkWrapper div{
-      display: flex;
-      margin: 0 auto;
-      width: 60%;
-      justify-content:space-evenly;
-      
-    }
-    .linkWrapper div p{
-    font-size: 1rem;
-    transition: .4s;
-    }
+    
     .linkWrapper div p:hover{
       color: rgba(128, 128, 128, 0.487);
       }
+      .section{
+        border-radius: 5px
+      }
+      .ordersWrapper{
+        display: flex;
+        min-height: 53vh;
+        flex-direction: row;
+      }
+
+      .linkWrapper div a {
+        margin: 5px;
+        width: 25%;
+        }
+
     .ordDaEvadere{
       min-width: 10rem;
       padding: 5px;

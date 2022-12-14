@@ -8,6 +8,7 @@ import AreaAdminCSS from "./StyleComponents/AreaAdmin.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
 import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
+import ButtonInput from "./MiniComponents/formComponents/ButtonInput";
 
 const AreaAdmin = ()=>{
     const {nome, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
@@ -34,14 +35,19 @@ const AreaAdmin = ()=>{
      <aside className={AreaAdminCSS.linkWrapper}>
         <div>
          <Link to={`/new-operator/${false}`}>
-          <p>Crea un nuovo utente operatore</p>
+          <ButtonInput
+          triggerName={"Crea utente operatore"}
+          />
          </Link>
          <Link to="/inserisciordine">
-          <p>Inserisci nuovo ordine</p>
+         <ButtonInput
+          triggerName={"Crea nuovo ordine"}
+          />
          </Link>
         </div>
     </aside>   
     
+    <aside className={AreaAdminCSS.ordersWrapper}>
     <section className={AreaAdminCSS.section}>
     <FontAwesomeIcon icon={faCakeCandles} />
      <h5 className={AreaAdminCSS.h5}>Ordini da evadere</h5>
@@ -75,6 +81,7 @@ const AreaAdmin = ()=>{
     }
     </ul>
     </section>
+    </aside>
 
     </main>
     )
