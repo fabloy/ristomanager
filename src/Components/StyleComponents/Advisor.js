@@ -1,38 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AdvisorCSS from "./Advisor.module.css"
 import displayAlert from "../../functions/displayAlert"
 import hideAlert from "../../functions/hideAlert";
 
+
+
 import Alert from 'react-bootstrap/Alert';
 const Advisor = ({title, text, hide, showAdv})=>{
-
+ const [adv, setAdv] = useState(showAdv) 
     useEffect(()=>{
-       showAdv? displayAlert(showAdv) : hideAlert()
-    }, [showAdv])
+       setAdv(showAdv)
+     }, [showAdv])
 
     return(
      <Alert 
-     className={`${AdvisorCSS.adv} alertInfo`}
+     className={`${AdvisorCSS.adv} ${!adv ? `${AdvisorCSS.notView}` : `${AdvisorCSS.adv}`}` }
       variant={"info"}
       >
-      <section 
-       className={AdvisorCSS.wrapPrimary}
-       >
-        <div>
-        {title}
-        </div>
-        <div 
-         className={AdvisorCSS.close}
-         onClick={()=>{
-            hide()
-}}
-         >
-            x
-        </div>
-      </section>
       <p>
        {text}
       </p>
+      
+        <button
+         className={AdvisorCSS.close}
+         onClick={()=>{ 
+            // setAdv(!showAdv)
+            hide(!showAdv)
+        }
+        }
+         > x </button>
+      
+      
      </Alert>
     )
 }

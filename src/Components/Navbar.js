@@ -9,25 +9,17 @@ import { showMenu } from "../functions/showMenu"
 
 
 const Navbar = ({logged})=>{
-  let itemsLogged = ["logout",<FontAwesomeIcon 
-  icon={faCircleInfo}
-  className={`pointer icon` }
-  onClick={()=>{
-    setShowAdv(!showAdv)
-  }}
-  />]
+  let itemsLogged = ["logout"]
   let itemsNotLogged = ["registrazione","login"]
   const [showAdv, setShowAdv] = useState(false)
   const [openOrClose, setOpenOrClose] = useState(false)
 
   useEffect(()=>{
-    // showAdv ? document.querySelector("h1").style.maxHeight="5rem" : document.querySelector("h1").style.maxHeight="0"
   showAdv ? document.getElementById("blurElement").style.display="block" :  document.getElementById("blurElement").style.display="none" 
   },[showAdv])
 
     return(
         <nav className={NavbarCSS.nav}>
-        
         <div>
          <img src="" alt="" />
         </div>
@@ -47,10 +39,9 @@ const Navbar = ({logged})=>{
            logged={logged}
            itemsLogged={itemsLogged}
            itemsNotLogged={itemsNotLogged}
+           showAdv={showAdv}
+           setShowAdv={(e)=>setShowAdv(e)}
           />
-           
-           
-           
           </section>
 
           {/* da sistemare: */}

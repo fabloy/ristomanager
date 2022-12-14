@@ -6,6 +6,7 @@ import TextAreaInput from "./MiniComponents/formComponents/TextAreaInput";
 import DateInput from "./MiniComponents/formComponents/DateInput";
 import TextElement from "./MiniComponents/TextElement"
 import SelectInput from "./MiniComponents/formComponents/SelectInput";
+import Advisor from "./StyleComponents/Advisor";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -30,6 +31,7 @@ const EditOrder = ({nOrder})=>{
  const [count, setCount]= useState(ordToEdit.prezzo)
  const [priceSelected, setPriceSelected] = useState(count/quantity)
  const [nameProduct, setNameProduct] = useState(orderFind.nomeProdotto)
+ const [showAdv, setShowAdv] = useState(false)
  const kindProduct=[{
   name:"Torta",
   price:20.00
@@ -53,20 +55,27 @@ const defineProductName = ()=>{
  
  const switchCount = ()=>{
   if(isNaN(count)||count===null){
-   console.log(typeof count, "undefined")
    let newPrice = (ordToEdit.prezzo/ordToEdit.quantita)*quantity
    setCount(newPrice)
   }
  }
+ 
 
  useEffect(()=>{
   removeRequired()
   manageSelectHTML(count, quantity)
   switchCount()
-},[name,tel, quantity, description, dateSelected,priceSelected,count])
+},[showAdv, name,tel, quantity, description, dateSelected,priceSelected,count])
+
+const hide = (e)=>{
+  console.log(e)
+  setShowAdv(e)
+}
 
  return(
-        <FormToCustom
+       <>
+       
+      <FormToCustom
        triggerName="Invia ordine"
        submitFun={(e)=>{
         e.preventDefault()
@@ -82,6 +91,7 @@ const defineProductName = ()=>{
             prezzo:count
           }
         ))
+        setShowAdv(true)
       }
       }
        input={[
@@ -134,6 +144,14 @@ const defineProductName = ()=>{
             
       >
       </FormToCustom>
+      <Advisor
+        title="Modifica ordine" 
+        text="Ordine modificato correttamente"
+        hide={(e)=>hide(e)} 
+        showAdv={showAdv}    
+      >
+      </Advisor>
+      </>
     )
 }
 

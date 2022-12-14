@@ -1,30 +1,20 @@
 import React from "react";
-import ButtonInput from "./MiniComponents/formComponents/ButtonInput"
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { filtra } from "../functions/filtra";
-import {reverseDate}from "../functions/editDate"
-import { setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi } from "../Store/StoreUser";
 import { useState } from "react";
 import { useEffect } from "react";
 import AreaAdminCSS from "./StyleComponents/AreaAdmin.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
-
-import { FaBeer, FaCheck} from 'react-icons/fa';
-
+import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
 
 const AreaAdmin = ()=>{
     const {nome, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
     const data = new Date()
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const dispatch = useDispatch()
-    const evadiOrdine = (el, elenco)=>{
-        console.log("evasione ordine")
-        dispatch(filtraOrdiniDaEvadere(filtra(el,elenco)[0]))
-        dispatch(setOrdiniEvasi(filtra(el,elenco)[1]))
-    }
+  
     
     useEffect(()=>{
      ordiniDaEvadere.length>0 ? setAdvisor("") : setAdvisor("Nessun ordine da evadere")
@@ -63,21 +53,9 @@ const AreaAdmin = ()=>{
     {
         ordiniDaEvadere.map(ord=>{
             return(
-            <li className={AreaAdminCSS.ordDaEvadere}>
-             <Link to={`/ordine/${ord.ordine}`}>
-              <h6>ord n. {ord.ordine.toString()}</h6>
-              <h6><strong>{ord.nomeProdotto}</strong></h6>
-              <p>{reverseDate(ord.data)} <br/>
-               di {ord.nomeCliente} <br/>
-              </p>
-             </Link>
-             
-             <button className={AreaAdminCSS.buttonDoneOrd}
-              onClick={()=>evadiOrdine(ord, ordiniDaEvadere)}
-              >
-                <FaCheck></FaCheck>
-              </button>
-            </li>
+            <BoxContainerOrdine
+             ord={ord}
+            />
             ) 
         })
     }
