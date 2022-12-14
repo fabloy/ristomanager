@@ -129,7 +129,22 @@ p{
     }
     .linkWrapper{
       max-height: 10vh;
+      margin-top: 10vh;
     }
+    .linkWrapper div{
+      display: flex;
+      margin: 0 auto;
+      width: 60%;
+      justify-content:space-evenly;
+      
+    }
+    .linkWrapper div p{
+    font-size: 1rem;
+    transition: .4s;
+    }
+    .linkWrapper div p:hover{
+      color: rgba(128, 128, 128, 0.487);
+      }
     .ordDaEvadere{
       min-width: 10rem;
       padding: 5px;

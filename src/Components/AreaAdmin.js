@@ -39,9 +39,6 @@ const AreaAdmin = ()=>{
          <Link to="/inserisciordine">
           <p>Inserisci nuovo ordine</p>
          </Link>
-         <Link to="/evadiordine">
-         <p>Evadi Ordine</p>
-         </Link>
         </div>
     </aside>   
     

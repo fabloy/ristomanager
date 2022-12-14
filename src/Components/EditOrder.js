@@ -7,7 +7,7 @@ import DateInput from "./MiniComponents/formComponents/DateInput";
 import TextElement from "./MiniComponents/TextElement"
 import SelectInput from "./MiniComponents/formComponents/SelectInput";
 import Advisor from "./StyleComponents/Advisor";
-import { useEffect } from "react";
+import { useEffect, useCallback} from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -50,8 +50,9 @@ const defineProductName = ()=>{
   if(productFind[0]===undefined){
     return nameProduct
    }
+   console.log("defineproduct")
   return productFind[0]?.name
- }
+}
  
  const switchCount = ()=>{
   if(isNaN(count)||count===null){
@@ -68,7 +69,7 @@ const defineProductName = ()=>{
 },[showAdv, name,tel, quantity, description, dateSelected,priceSelected,count])
 
 const hide = (e)=>{
-  console.log(e)
+  console.log("hide")
   setShowAdv(e)
 }
 
