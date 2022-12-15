@@ -4,5 +4,7 @@ export const showOrderDetail = ()=>{
   wrapper.style.overflow="auto"
   wrapper.style.opacity= "1";
  }
- window.setTimeout(editCSS, 100)
+
+    console.log(wrapper)
+    editCSS()
 }
