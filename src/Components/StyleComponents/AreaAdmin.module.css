@@ -154,7 +154,19 @@ p{
       color: rgba(128, 128, 128, 0.487);
       }
       .section{
-        border-radius: 5px
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      }
+      .section ul{
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        overflow: auto;
+      }
+      #advisor{
+        width: 100%;
       }
       .ordersWrapper{
         display: flex;
@@ -164,7 +176,7 @@ p{
 
       .linkWrapper div a {
         margin: 5px;
-        width: 25%;
+        max-width: 32%;
         }
 
     .ordDaEvadere{
@@ -172,6 +184,24 @@ p{
       padding: 5px;
       max-height: 16rem;
       text-align: center;
+  }
+  
+
+  .section:nth-child(even) ul{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .section:nth-child(even) ul li{
+    max-width: 35%;
+    min-width: 35%;
+    text-align: center;
+    cursor: pointer;
+  }
+  .section:nth-child(even) ul li:hover{
+    transition: .3s;
+    background-color: wheat;
+    border-radius: 5px;
+    color: var(--primary);
   }
   
   }

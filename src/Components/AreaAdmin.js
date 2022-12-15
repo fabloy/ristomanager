@@ -18,7 +18,7 @@ const AreaAdmin = ()=>{
   
     
     useEffect(()=>{
-     ordiniDaEvadere.length>0 ? setAdvisor("") : setAdvisor("Nessun ordine da evadere")
+     ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
     
     },[ordiniDaEvadere.length])
   
@@ -52,7 +52,7 @@ const AreaAdmin = ()=>{
     <FontAwesomeIcon icon={faCakeCandles} />
      <h5 className={AreaAdminCSS.h5}>Ordini da evadere</h5>
      <ul className={AreaAdminCSS.ul}>
-      <li>{advisor}</li>
+      {advisor && <li id={AreaAdminCSS.advisor}>{advisor}</li>}
     {
         ordiniDaEvadere.map(ord=>{
             return(

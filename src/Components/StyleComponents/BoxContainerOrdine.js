@@ -33,7 +33,7 @@ const BoxContainerOrdine = ({ord})=>{
                 <FaCheck></FaCheck>
               </button>
               <button className={AreaAdminCSS.buttonCancelOrd}
-              onClick={()=>dispatch(deleteOrdiniDaEvadere(ord.ordine))}
+              onClick={()=>dispatch(deleteOrdiniDaEvadere(ord))}
               >
                 <FaTrash></FaTrash>
               </button>

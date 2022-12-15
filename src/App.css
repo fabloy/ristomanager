@@ -20,6 +20,7 @@ a{
   list-style: none;
   text-decoration: none;
   color: var(--primary);
+  display: block;
 }
 ul{
   padding: 0;
