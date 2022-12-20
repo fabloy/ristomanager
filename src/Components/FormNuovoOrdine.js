@@ -19,7 +19,7 @@ import { checkNome,checkDate, checkTel, checkEmail, checkPassword, checkProductS
 
 const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPrincipali})=>{
     const dispatch = useDispatch()
-    const {idOrd, nome:nomeOperatore}=useSelector(state=>state)
+    const {idOrd, nome:nomeOperatore, ordiniDaEvadere}=useSelector(state=>state)
     const kindProduct=[{
       name:"Torta",
       price:20.00
@@ -51,19 +51,17 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
         e.preventDefault()
         if(name && date && description && tel.length===10){
          setOrderNumber(orderNumber+1)
-         ordineGenerato = new Ordine(name, tel, description, ingredients, date,nameProductSelected,quantity, count, orderNumber)
-         console.log(ordineGenerato.nomeCliente, name)
+         ordineGenerato = new Ordine(name, tel, description,date,nameProductSelected,quantity, count, orderNumber)
          dispatch(setOrdiniDaEvadere({
-            'nomeCliente':ordineGenerato.nomeCliente,
-            'nomeProdotto':ordineGenerato.nomeProdotto,
-            'ordine':ordineGenerato.id,
-            'telefono':ordineGenerato.telefono,
-            'data':ordineGenerato.data,
-            'descrizione':ordineGenerato.descrizione,
-            'ingredienti principali':ordineGenerato.ingredienti,
-            'quantita':ordineGenerato.quantita,
-            'prezzo':ordineGenerato.prezzo
-          }))
+          'nomeCliente':ordineGenerato.nomeCliente,
+          'nomeProdotto':ordineGenerato.nomeProdotto,
+          'ordine':ordineGenerato.id,
+          'telefono':ordineGenerato.telefono,
+          'data':ordineGenerato.data,
+          'descrizione':ordineGenerato.descrizione,
+          'quantita':ordineGenerato.quantita,
+          'prezzo':ordineGenerato.prezzo
+        }))
           setView(true)
           cleanInput()
         }else{

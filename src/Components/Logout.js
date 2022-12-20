@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import LogoutCSS from "../Components/StyleComponents/Logout.module.css"
 const Logout=({logged})=>{
     const [show, setShow] = useState(false)
     let url = window.location.href
@@ -16,11 +16,15 @@ const Logout=({logged})=>{
     
 
     return(
-        <section style={show? {display:"block"}:{display:"none"}}>
-            <h3>Logout</h3>
-            <p>
-                Sei sicuro di voler effettuare il logout?
-            </p>
+        <section 
+        className={LogoutCSS.wrapper}
+         style={
+            show? {display:"block"}:{display:"none"}
+            }>
+         <h3>Logout</h3>
+          <p>
+            Sei sicuro di voler effettuare il logout?
+          </p>
             <button onClick={()=>logout()}>
                 si
             </button>

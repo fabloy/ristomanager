@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import OrdineDettaglioCSS from "../Components/StyleComponents/OrdineDettaglio.module.css"
 import EditOrder from "./EditOrder";
-// import { showOrderDetail } from "../functions/ShowOderDetail";
 
 const OrdineDettaglio = ()=>{
  const [ordine, setOrdine] = useState()
@@ -17,6 +16,7 @@ const OrdineDettaglio = ()=>{
  useEffect(()=>{
      let ordToShow = ordiniDaEvadere.filter(el=>el.ordine.toString()===params.id)
      setOrdine(...ordToShow)
+     console.log(ordToShow)
     },[params.id])
 
     return(

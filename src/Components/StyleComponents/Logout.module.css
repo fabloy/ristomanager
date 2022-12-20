@@ -1,0 +1,8 @@
+.wrapper{
+    margin: 25vh auto 0px;
+    text-align: center;
+    width: 50%;
+    background-color: wheat;
+    padding: 15px;
+    border-radius: 5px;
+}

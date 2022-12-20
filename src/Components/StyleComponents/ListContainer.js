@@ -19,7 +19,6 @@ const ListContainer = ({logged, itemsLogged, itemsNotLogged,setShowAdv, showAdv}
                     <Link to={`/${i}`}>
                      <ListItem title={i} />
                     </Link>
-                    <Link to={`/${i}`}>
                      <FontAwesomeIcon 
                       icon={faCircleInfo}
                       className={`pointer icon` }
@@ -27,7 +26,6 @@ const ListContainer = ({logged, itemsLogged, itemsNotLogged,setShowAdv, showAdv}
                       setShowAdv(!showAdv)
                       }}
                      />
-                    </Link>
         </>
                 )
             })

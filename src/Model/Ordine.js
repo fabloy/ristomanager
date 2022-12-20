@@ -1,9 +1,8 @@
 export class Ordine{
-    constructor(nomeCliente, telefono, descrizione, ingredienti, data,nomeProdotto,quantita, prezzo, id){
+    constructor(nomeCliente, telefono, descrizione, data,nomeProdotto,quantita, prezzo, id){
         this.nomeCliente=nomeCliente;
         this.telefono=telefono
         this.descrizione=descrizione;
-        this.ingredienti=ingredienti;
         this.data=data;
         this.nomeProdotto = nomeProdotto;
         this.quantita=quantita;
