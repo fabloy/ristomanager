@@ -10,10 +10,10 @@ import FormToCustom from "./FormToCustom";
 import NameInput from "./MiniComponents/formComponents/NameInput";
 import EmailInput from "./MiniComponents/formComponents/EmailInput";
 import PasswordInput from "./MiniComponents/formComponents/Password";
-import AlertElement from "./MiniComponents/AlertElement";
 import { useDispatch } from "react-redux";
 import { setAggiungiOperatore } from "../Store/StoreUser";
 import { cleanInput } from "../functions/cleanInput";
+import Advisor from "./StyleComponents/Advisor";
 
 
 
@@ -62,31 +62,23 @@ const FormNewOperator = ()=>{
  },[name, email, password, view])
 
     return <>
-     {view? <AlertElement
-      variantSelected="success"
-      text={`Nuovo operatore "${operatoriAggiunti[operatoriAggiunti.length-1]?.nome}" aggiunto correttamente`}>
-      </AlertElement>
-      :
-      <></>
-     }
-       <label>
-         {nome} 
-          stai registrando un nuovo operatore
-        </label>
-     
-    
-      <FormToCustom
-      triggerName="Invia ordine"
-      submitFun={(e)=>{
-       e.preventDefault()
-       sendUser(e)
-     }}
-      input={[
+            <Advisor
+              text={`Nuovo utente ${name} aggiunto correttamente`}
+              hide={()=>setView(!view)}
+              showAdv={view}
+             />
+            <FormToCustom
+             triggerName="Invia ordine"
+             submitFun={(e)=>{
+              e.preventDefault()
+              sendUser(e)
+             }}
+             input={[
              <NameInput 
               setName={(e)=>{
                setName(e.target.value)
                setAlert(checkNome(e.target.value))
-             }}
+              }}
              />,
             <EmailInput
             setEmail={(e)=>{
@@ -104,11 +96,9 @@ const FormNewOperator = ()=>{
             <p>{alert}</p>
             ]
            }
-     >
+           >
      </FormToCustom>
-
      </>
-     
 }
 
 export default FormNewOperator

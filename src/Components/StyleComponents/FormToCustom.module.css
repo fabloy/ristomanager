@@ -3,7 +3,7 @@
    width: 80vw;
    position: relative;
    z-index: 99;
-
+   margin-top: 15vh;
 }
 .formCustom div label, .formCustom p{
     font-size: 1.1rem;

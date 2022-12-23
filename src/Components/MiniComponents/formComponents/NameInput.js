@@ -9,7 +9,7 @@ const NameInput = ({setName, setAlert, msg, val, req})=>{
         editClass(value)
     },[value])
     const editClass = (value)=>{
-       let firstCheck = value.length>=3? true : false
+       let firstCheck = value.length>3? true : false
        let secondCheck =  isNaN(value)? true : false
        firstCheck&&secondCheck? setValidated(true) : setValidated(false)
        }
