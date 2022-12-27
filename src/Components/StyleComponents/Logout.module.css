@@ -1,8 +1,16 @@
 .wrapper{
     margin: 25vh auto 0px;
     text-align: center;
-    width: 50%;
+    width: 100%;
     background-color: wheat;
-    padding: 15px;
+    padding: 25px;
     border-radius: 5px;
+}
+.wrapper button{
+    margin: 5px;
+    padding: 2.5px;
+    width: 20%;
+    border-radius: 8%;
+    background-color: var(--secondary);
+    color: white;
 }
