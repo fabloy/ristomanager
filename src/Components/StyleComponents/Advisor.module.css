@@ -23,6 +23,7 @@
     opacity: 0;
     top: -5vh;
     transition: .8s;
+    z-index: 101;
 }
 
 .wrapPrimary >*{
