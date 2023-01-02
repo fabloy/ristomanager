@@ -16,12 +16,23 @@ const AreaAdmin = ()=>{
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const dispatch = useDispatch()
   
-    
     useEffect(()=>{
      ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
-    
+     defineStorage()
     },[ordiniDaEvadere.length])
-  
+
+    
+    const user = useSelector(state=>state)
+    const defineStorage = ()=>{
+        localStorage.setItem("id",user.id)
+        localStorage.setItem("logged",user.logged)
+        localStorage.setItem("admin",user.admin)
+        localStorage.setItem("user",user.nome)
+        localStorage.setItem("email",user.email)
+        localStorage.setItem("password",user.password)
+        localStorage.setItem("ordiniDaEvadere",JSON.stringify(user.ordiniDaEvadere))
+        localStorage.setItem("ordiniEvasi",JSON.stringify(user.ordiniEvasi))
+    }
 
     return(
     <main className={AreaAdminCSS.main}>

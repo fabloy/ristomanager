@@ -1,11 +1,13 @@
 import React from "react"
-import RegistrazioneCorretta from "./RegistrazioneCorretta"
 import Home from "./Home.js"
-import { useSelector } from "react-redux"
+import { useSelector,useDispatch} from "react-redux";
 import FormRegistrazione from "./FormRegistrazione"
+import { setLogged } from "../Store/StoreUser";
 
 const Registrazione = ()=>{
  const {logged}=useSelector(state=>state)
+ const dispatch = useDispatch()
+ localStorage.logged==="true" && dispatch(setLogged(true))
  return(
   <>
     { logged ? <Home/>

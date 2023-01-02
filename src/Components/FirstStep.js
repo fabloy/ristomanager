@@ -7,12 +7,18 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAdmin } from "../Store/StoreUser";
 import FirstStepCSS from "./StyleComponents/FirstStep.module.css"
+import { setLogged, setNome } from "../Store/StoreUser";
+import { Display } from "react-bootstrap-icons";
 
 
 
 const FirstStep = ()=>{
     const dispatch=useDispatch()
-    const {logged, admin} = useSelector(state=>state)
+    const {logged, admin, nome} = useSelector(state=>state)
+    localStorage.logged==="true" && dispatch(setLogged(true))
+    localStorage.logged==="true" && dispatch(setNome(localStorage.user))
+    //settare tutto lo store con i dati del localstorage...
+    localStorage.admin==="true" && dispatch(setAdmin(true)) 
 
     return !logged? (
         

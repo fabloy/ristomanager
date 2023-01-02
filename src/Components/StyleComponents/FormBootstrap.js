@@ -23,7 +23,7 @@ function FormBootstrap(){
  const [alert, setAlert]=useState("Compila tutti i campi")
 
  //state Store:
- const {id, admin}=useSelector(state=>state)
+ const {id, admin, logged}=useSelector(state=>state)
  const dispatch = useDispatch()
 
  const submitUser=(e)=>{
@@ -35,7 +35,6 @@ function FormBootstrap(){
      dispatch(setEmail(attivitaInserita.email))
      dispatch(setPassword(attivitaInserita.password))
      dispatch(setLogged(true))
-     console.log(attivitaInserita)
      return
     }
     setAlert("dati non validi")

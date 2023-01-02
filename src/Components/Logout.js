@@ -11,6 +11,7 @@ const Logout=({logged})=>{
 
     const logout = ()=>{
      setShow(false)
+     localStorage.clear()
      window.location.href='/'
     }
     
