@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import OrdineDettaglioCSS from "../Components/StyleComponents/OrdineDettaglio.module.css"
+import { defineStorage } from "../functions/defineStorage";
 import EditOrder from "./EditOrder";
 
 const OrdineDettaglio = ()=>{
  const [ordine, setOrdine] = useState()
- const [opacity, setOpacity]=useState("0")
  const params = useParams()
- const {ordiniDaEvadere} = useSelector(state=>state)
+ const {ordiniDaEvadere, ordiniEvasi} = useSelector(state=>state)
  const [showEdit, setShowEdit] = useState(false)
+ const [ordId, setOrdId] = useState(params.id || localStorage.idOrdSelected)
+ const dispatch = useDispatch()
 
+ defineStorage(dispatch,ordiniDaEvadere, ordiniEvasi)
+//  if(ordiniDaEvadere.length>0){
+//     localStorage.ordiniDaEvadere=JSON.stringify(ordiniDaEvadere)
+//  } 
 
- 
  useEffect(()=>{
-     let ordToShow = ordiniDaEvadere.filter(el=>el.ordine.toString()===params.id)
+     let ordToShow = ordiniDaEvadere.filter(el=>el.id.toString()===ordId)
      setOrdine(...ordToShow)
-     console.log(ordToShow)
+     console.log(ordToShow, ordiniDaEvadere)
     },[params.id])
 
     return(
         <main>
           {!showEdit ? <section className={OrdineDettaglioCSS.wrapper}>
             <div>
-            <h2>Ordine n: {ordine?.ordine}</h2>
+            <h2>Ordine n: {ordine?.id}</h2>
             <p>
              Cliente: <b>{ordine?.nomeCliente}</b>
              <br></br>
@@ -43,12 +48,10 @@ const OrdineDettaglio = ()=>{
         </section>
         :
         <EditOrder
-        nOrder={ordine?.ordine}
+        nOrder={ordine?.id}
         ></EditOrder>
     }
-        
-        
-        </main>
+      </main>
     )
 }
 export default OrdineDettaglio

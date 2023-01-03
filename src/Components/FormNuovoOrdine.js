@@ -19,7 +19,7 @@ import { checkNome,checkDate, checkTel, checkEmail, checkPassword, checkProductS
 
 const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPrincipali})=>{
     const dispatch = useDispatch()
-    const {idOrd, nome:nomeOperatore, ordiniDaEvadere}=useSelector(state=>state)
+    const {idOrd, nome:nomeOperatore, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
     const kindProduct=[{
       name:"Torta",
       price:20.00
@@ -55,7 +55,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
          dispatch(setOrdiniDaEvadere({
           'nomeCliente':ordineGenerato.nomeCliente,
           'nomeProdotto':ordineGenerato.nomeProdotto,
-          'ordine':ordineGenerato.id,
+          'id':ordineGenerato.id,
           'telefono':ordineGenerato.telefono,
           'data':ordineGenerato.data,
           'descrizione':ordineGenerato.descrizione,
@@ -63,7 +63,9 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
           'prezzo':ordineGenerato.prezzo
         }))
           setView(true)
-          cleanInput()
+         localStorage.setItem("ordiniDaEvadere",JSON.stringify([...ordiniDaEvadere, ordineGenerato]))
+         localStorage.setItem("ordiniEvasi",JSON.stringify([...ordiniEvasi])) 
+         cleanInput()
         }else{
           console.log("error! form not sent", name,date, description,tel.length===10)
         }
@@ -97,7 +99,9 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
       <FormToCustom
        triggerName="Invia ordine"
        submitFun={(e)=>{
-        invioNuovoOrdine(e)}
+        invioNuovoOrdine(e)
+      
+      }
       }
        input={[
               <h3>Ordine n.{idOrd?.toString()}</h3>,

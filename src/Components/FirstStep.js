@@ -1,25 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import AreaAdmin from "./AreaAdmin";
 import AreaOperatore from "./AreaOperatore";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setAdmin } from "../Store/StoreUser";
+import { setAdmin, setOrdiniDaEvadere } from "../Store/StoreUser";
 import FirstStepCSS from "./StyleComponents/FirstStep.module.css"
 import { setLogged, setNome } from "../Store/StoreUser";
-import { Display } from "react-bootstrap-icons";
 
 
 
 const FirstStep = ()=>{
     const dispatch=useDispatch()
-    const {logged, admin, nome} = useSelector(state=>state)
+    const {logged, admin, nome,ordiniDaEvadere} = useSelector(state=>state)
     localStorage.logged==="true" && dispatch(setLogged(true))
-    localStorage.logged==="true" && dispatch(setNome(localStorage.user))
-    //settare tutto lo store con i dati del localstorage...
-    localStorage.admin==="true" && dispatch(setAdmin(true)) 
-
+    localStorage.admin==="true" && dispatch(setAdmin(true))
     return !logged? (
         
     <main className={`${FirstStepCSS.boxContainer}`}>

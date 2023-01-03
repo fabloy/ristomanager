@@ -45,7 +45,7 @@ const storeUser=createSlice({
         },
         editOrdiniDaEvadere:(state, action)=>{
         state.ordiniDaEvadere = state.ordiniDaEvadere.map((ord)=>{
-               return ord.ordine === action.payload.ordine? ord={...ord, ...action.payload} : ord = ord
+               return ord.id === action.payload.id? ord={...ord, ...action.payload} : ord = ord
               })
         },
         deleteOrdiniDaEvadere:(state, action)=>{

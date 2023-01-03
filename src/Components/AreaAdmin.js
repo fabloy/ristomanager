@@ -9,30 +9,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
 import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
 import ButtonInput from "./MiniComponents/formComponents/ButtonInput";
+import { defineStorage } from "../functions/defineStorage";
+
 
 const AreaAdmin = ()=>{
     const {nome, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
     const data = new Date()
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const dispatch = useDispatch()
+    //se nel local storage c'è gia un array con tutti gli ordini utilizza quello, 
+    // altrimenti vallo a prendere dallo store globale
   
     useEffect(()=>{
      ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
-     defineStorage()
     },[ordiniDaEvadere.length])
+    defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
 
-    
-    const user = useSelector(state=>state)
-    const defineStorage = ()=>{
-        localStorage.setItem("id",user.id)
-        localStorage.setItem("logged",user.logged)
-        localStorage.setItem("admin",user.admin)
-        localStorage.setItem("user",user.nome)
-        localStorage.setItem("email",user.email)
-        localStorage.setItem("password",user.password)
-        localStorage.setItem("ordiniDaEvadere",JSON.stringify(user.ordiniDaEvadere))
-        localStorage.setItem("ordiniEvasi",JSON.stringify(user.ordiniEvasi))
-    }
+
 
     return(
     <main className={AreaAdminCSS.main}>
@@ -81,7 +74,7 @@ const AreaAdmin = ()=>{
     
      <ul className={AreaAdminCSS.ul}>
        { 
-       ordiniEvasi.length<1 && <li>Nessun ordine evaso</li>
+       ordiniEvasi?.length<1 && <li>Nessun ordine evaso</li>
        } 
     {
         ordiniEvasi.map(ord=>{

@@ -13,6 +13,7 @@ import EmailInput from "../MiniComponents/formComponents/EmailInput"
 import PasswordInput from '../MiniComponents/formComponents/Password';
 import DemoVideo from "../../images/demo.mp4"
 import FormBoostrapCSS from "../StyleComponents/FormBoostrap.module.css"
+import { createStorage } from '../../functions/createStorage';
 
 function FormBootstrap(){
 
@@ -23,7 +24,7 @@ function FormBootstrap(){
  const [alert, setAlert]=useState("Compila tutti i campi")
 
  //state Store:
- const {id, admin, logged}=useSelector(state=>state)
+ const {id, admin, logged, nome}=useSelector(state=>state)
  const dispatch = useDispatch()
 
  const submitUser=(e)=>{
@@ -35,6 +36,7 @@ function FormBootstrap(){
      dispatch(setEmail(attivitaInserita.email))
      dispatch(setPassword(attivitaInserita.password))
      dispatch(setLogged(true))
+     createStorage(id,attivitaInserita.nome)
      return
     }
     setAlert("dati non validi")
@@ -55,7 +57,7 @@ useEffect(()=>{
     <main className={FormBoostrapCSS.formWrapper}>
      <FormToCustom
       triggerName="Salva"
-      submitFun={(e)=>submitUser(e)}
+      submitFun={(e)=>{submitUser(e)}}
       input={[
         <NameInput
          setName={(e)=>{

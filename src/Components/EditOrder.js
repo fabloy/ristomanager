@@ -20,7 +20,7 @@ const EditOrder = ({nOrder})=>{
  const dispatch = useDispatch()
  const {ordiniDaEvadere} = useSelector(state=>state)
 
- let orderFind = ordiniDaEvadere.filter((ord)=>ord.ordine===nOrder)
+ let orderFind = ordiniDaEvadere.filter((ord)=>ord.id===nOrder)
  orderFind=orderFind[0]
  const [ordToEdit, setOrdToEdit] = useState(orderFind)
  const [name, setName] = useState(ordToEdit.nomeCliente)
@@ -50,7 +50,6 @@ const defineProductName = ()=>{
   if(productFind[0]===undefined){
     return nameProduct
    }
-   console.log("defineproduct")
   return productFind[0]?.name
 }
  
@@ -66,11 +65,15 @@ const defineProductName = ()=>{
   removeRequired()
   manageSelectHTML(count, quantity)
   switchCount()
-},[showAdv, name,tel, quantity, description, dateSelected,priceSelected,count])
+  editOrdiniDaEvadereInLS()
+},[showAdv, name,tel, quantity, description, dateSelected,priceSelected,count,ordiniDaEvadere])
 
 const hide = (e)=>{
-  console.log("hide")
   setShowAdv(e)
+}
+
+const editOrdiniDaEvadereInLS = ()=>{
+ localStorage.ordiniDaEvadere= JSON.stringify(ordiniDaEvadere)
 }
 
  return(
