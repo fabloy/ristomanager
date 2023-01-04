@@ -28,6 +28,7 @@ const FirstStep = ()=>{
        className={`${FirstStepCSS.bottomTitle}`}
         onClick={
             ()=>{dispatch(setAdmin(false))
+               localStorage.setItem("admin","false")
          }}>
          Area Operatore
         </h2>

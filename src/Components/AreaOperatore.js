@@ -16,6 +16,7 @@ const AreaOperatore = ()=>{
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const data = new Date()
     const dispatch = useDispatch()
+    localStorage.admin="false"
     const evadiOrdine = (el, elenco)=>{
         dispatch(filtraOrdiniDaEvadere(filtra(el,elenco)[0]))
         dispatch(setOrdiniEvasi(filtra(el,elenco)[1]))

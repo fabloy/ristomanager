@@ -49,8 +49,9 @@ const storeUser=createSlice({
               })
         },
         deleteOrdiniDaEvadere:(state, action)=>{
-          state.ordiniDaEvadere = state.ordiniDaEvadere.filter((ord)=>ord.ordine!==action.payload.ordine)
-            },
+          let newArray = state.ordiniDaEvadere.filter((ord)=>ord.id!==action.payload.id)
+           state.ordiniDaEvadere = newArray
+        },
         setOrdiniEvasi:(state,action)=>{
          state.ordiniEvasi=[...state.ordiniEvasi, ...action.payload]
         },

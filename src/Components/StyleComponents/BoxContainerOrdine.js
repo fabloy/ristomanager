@@ -8,6 +8,7 @@ import { filtra } from "../../functions/filtra";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ordElimInLs } from "../../functions/ordElimInLs";
 
 const BoxContainerOrdine = ({ord})=>{
     const dispatch = useDispatch()
@@ -20,18 +21,19 @@ const BoxContainerOrdine = ({ord})=>{
         localStorage.ordiniDaEvadere=JSON.stringify(filtraOrdiniDaEvadere(filtra(el,elenco)[0]).payload)
         localStorage.setItem("ordiniEvasi",JSON.stringify([...ordiniEvasi, ord]))
     }
-
-    useEffect(()=>{
-      console.log(ordId)
-    })
+    const deleteOrd = (ord)=>{
+      dispatch(deleteOrdiniDaEvadere(ord))
+    }
+    
 
     return(
         <li 
          className={AreaAdminCSS.ordDaEvadere}
          onClick={()=>localStorage.idOrdSelected=ordId}
+         key={ordId}
          >
              <Link to={`/ordine/${ordId}`}>
-              <h6>ord n. {ord?.ordine?.toString()}</h6>
+              <h6>ord n. {ord?.id?.toString()}</h6>
               <h6><strong>{ord?.nomeProdotto}</strong></h6>
               <p>
                 {/* {reverseDate(ord?.data)} */}
@@ -45,8 +47,12 @@ const BoxContainerOrdine = ({ord})=>{
               >
                 <FaCheck></FaCheck>
               </button>
+    
               <button className={AreaAdminCSS.buttonCancelOrd}
-              onClick={()=>dispatch(deleteOrdiniDaEvadere(ord))}
+              onClick={()=>{
+                deleteOrd(ord)
+                ordElimInLs(ord)
+              }}
               >
                 <FaTrash></FaTrash>
               </button>

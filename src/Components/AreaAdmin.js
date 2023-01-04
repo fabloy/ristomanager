@@ -10,6 +10,7 @@ import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
 import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
 import ButtonInput from "./MiniComponents/formComponents/ButtonInput";
 import { defineStorage } from "../functions/defineStorage";
+import { ordElimInLs } from "../functions/ordElimInLs";
 
 
 const AreaAdmin = ()=>{
@@ -17,16 +18,12 @@ const AreaAdmin = ()=>{
     const data = new Date()
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const dispatch = useDispatch()
-    //se nel local storage c'è gia un array con tutti gli ordini utilizza quello, 
-    // altrimenti vallo a prendere dallo store globale
-  
+    localStorage.admin="true"
     useEffect(()=>{
      ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
     },[ordiniDaEvadere.length])
     defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
-
-
-
+    
     return(
     <main className={AreaAdminCSS.main}>
      <aside className={AreaAdminCSS.aside}>
