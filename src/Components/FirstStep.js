@@ -7,14 +7,20 @@ import { useDispatch } from "react-redux";
 import { setAdmin, setOrdiniDaEvadere } from "../Store/StoreUser";
 import FirstStepCSS from "./StyleComponents/FirstStep.module.css"
 import { setLogged, setNome } from "../Store/StoreUser";
+import { useEffect } from "react";
 
 
 
 const FirstStep = ()=>{
     const dispatch=useDispatch()
     const {logged, admin, nome,ordiniDaEvadere} = useSelector(state=>state)
-    localStorage.logged==="true" && dispatch(setLogged(true))
-    localStorage.admin==="true" && dispatch(setAdmin(true))
+    
+    useEffect(()=>{
+     !localStorage.logged && localStorage.setItem("logged",logged.toString())
+     !localStorage.admin && localStorage.setItem("admin",admin.toString())
+     },[])
+   //   localStorage.admin
+
     return !logged? (
         
     <main className={`${FirstStepCSS.boxContainer}`}>
@@ -22,14 +28,15 @@ const FirstStep = ()=>{
      <Link 
       className={`${FirstStepCSS.boxToSelect} ${FirstStepCSS.imgOne} ${FirstStepCSS.link}`} 
       to={'/registrazione'}
+      onClick={
+         ()=>{dispatch(setAdmin(false))
+            localStorage.admin="false"
+      }}
       >
       
        <h2
        className={`${FirstStepCSS.bottomTitle}`}
-        onClick={
-            ()=>{dispatch(setAdmin(false))
-               localStorage.setItem("admin","false")
-         }}>
+        >
          Area Operatore
         </h2>
       </Link>
@@ -39,6 +46,7 @@ const FirstStep = ()=>{
        className={`${FirstStepCSS.boxToSelect} ${FirstStepCSS.imgTwo} ${FirstStepCSS.link}`}
        onClick={
         ()=>{dispatch(setAdmin(true))
+         localStorage.admin="true"
      }}
       >
          <h2 

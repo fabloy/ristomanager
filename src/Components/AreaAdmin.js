@@ -19,19 +19,21 @@ const AreaAdmin = ()=>{
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
     const dispatch = useDispatch()
     localStorage.admin="true"
+    
+    defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
     useEffect(()=>{
      ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
     },[ordiniDaEvadere.length])
-    defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
+    
     
     return(
     <main className={AreaAdminCSS.main}>
      <aside className={AreaAdminCSS.aside}>
-      <p>
+      <div>
        <h4> Ciao <strong>{nome}</strong></h4>
         Benvenuto nella tua homepage,<br></br> 
-        monitora i tuoi ordini da evadere.
-      </p>
+        monitora i tuoi ordini.
+      </div>
      </aside>
      <aside className={AreaAdminCSS.linkWrapper}>
         <div>

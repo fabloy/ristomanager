@@ -8,7 +8,6 @@ const FormToCustom = ({input, submitFun, triggerName})=>{
         <Form
         className={FormToCustomCSS.formCustom}
         onSubmit={(e)=>{
-            console.log("ONsubmit",e)
             submitFun(e)
             }}>
          {input}

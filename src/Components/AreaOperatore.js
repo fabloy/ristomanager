@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
 import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
 import ButtonInput from "./MiniComponents/formComponents/ButtonInput";
+import { defineStorage } from "../functions/defineStorage";
 
 
 const AreaOperatore = ()=>{
@@ -23,8 +24,8 @@ const AreaOperatore = ()=>{
     }
     useEffect(()=>{
         ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
-       
-       },[ordiniDaEvadere.length])
+    },[ordiniDaEvadere.length])
+    defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
 
     return(
         <main className={AreaAdminCSS.main}>

@@ -26,7 +26,7 @@ function FormBootstrap(){
  //state Store:
  const {id, admin, logged, nome}=useSelector(state=>state)
  const dispatch = useDispatch()
- localStorage.admin=admin
+//  localStorage.admin=admin
  const submitUser=(e)=>{
     e.preventDefault()
     if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){
