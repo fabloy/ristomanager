@@ -13,7 +13,7 @@ import EmailInput from "../MiniComponents/formComponents/EmailInput"
 import PasswordInput from '../MiniComponents/formComponents/Password';
 import DemoVideo from "../../images/demo.mp4"
 import FormBoostrapCSS from "../StyleComponents/FormBoostrap.module.css"
-import { createStorage } from '../../functions/createStorage';
+import {createStorage} from "../../functions/storageFunctions/createStorage"
 
 function FormBootstrap(){
 
@@ -26,7 +26,7 @@ function FormBootstrap(){
  //state Store:
  const {id, admin, logged, nome}=useSelector(state=>state)
  const dispatch = useDispatch()
- localStorage.admin=admin
+//  localStorage.admin=admin
  const submitUser=(e)=>{
     e.preventDefault()
     if(validateEmail(attivitaEmail) && validateNomeAttivita(attivitaNome) && validatePassword(attivitaPassword)){

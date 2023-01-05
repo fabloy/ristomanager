@@ -13,7 +13,6 @@ const ListContainer = ({logged, itemsLogged, itemsNotLogged,setShowAdv, showAdv}
         </Link>
         {logged? 
             itemsLogged.map((i)=>{
-                console.log(i)
                 return (
                     <>
                     <Link to={`/${i}`}>

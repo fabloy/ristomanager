@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setLogged,setNome,setOrdiniDaEvadere,setAdmin } from "../Store/StoreUser"
+import { setLogged,setNome,setOrdiniDaEvadere,setAdmin } from "../../Store/StoreUser"
 
   export const createStorage = (id,nome)=>{
     localStorage.setItem("admin","true")

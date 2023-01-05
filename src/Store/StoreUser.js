@@ -7,7 +7,7 @@ let id = 0
 //state iniziale
 const initialState = {
     logged:false,
-    admin:false,
+    admin:localStorage.admin? JSON.parse(localStorage.admin) : "",
     nome:"",
     email:"",
     password:"",
@@ -60,6 +60,7 @@ const storeUser=createSlice({
         },
         setAdmin:(state,action)=>{
             state.admin=action.payload
+            console.log(action.payload)
         },
         setAggiungiOperatore:(state, action)=>{
             console.log(action.payload)

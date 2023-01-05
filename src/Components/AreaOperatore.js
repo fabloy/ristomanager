@@ -3,37 +3,37 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { filtra } from "../functions/filtra";
-import { setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi } from "../Store/StoreUser";
+import { setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi, setNome } from "../Store/StoreUser";
 import AreaAdminCSS from "./StyleComponents/AreaAdmin.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
 import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
 import ButtonInput from "./MiniComponents/formComponents/ButtonInput";
+import { defineLSinOperatorArea} from "../functions/storageFunctions/defineStorage";
 
 
 const AreaOperatore = ()=>{
-    const {nome, ordiniDaEvadere, ordiniEvasi}=useSelector(state=>state)
+    const {nome, ordiniDaEvadere, ordiniEvasi, logged}=useSelector(state=>state)
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
-    const data = new Date()
+    
     const dispatch = useDispatch()
     localStorage.admin="false"
-    const evadiOrdine = (el, elenco)=>{
-        dispatch(filtraOrdiniDaEvadere(filtra(el,elenco)[0]))
-        dispatch(setOrdiniEvasi(filtra(el,elenco)[1]))
-    }
+    // defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
     useEffect(()=>{
-        ordiniDaEvadere.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
-       
-       },[ordiniDaEvadere.length])
+     ordiniDaEvadere?.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
+    },[ordiniDaEvadere?.length])
+  defineLSinOperatorArea(ordiniDaEvadere, ordiniEvasi,dispatch)
+
+    
 
     return(
         <main className={AreaAdminCSS.main}>
         <aside className={AreaAdminCSS.aside}>
-         <p>
+         <div>
           <h4> Ciao <strong>{nome}</strong></h4>
            Benvenuto nella tua homepage,<br></br> 
            monitora i tuoi ordini da evadere.
-         </p>
+         </div>
         </aside>
         <aside className={AreaAdminCSS.linkWrapper}>
            <div>

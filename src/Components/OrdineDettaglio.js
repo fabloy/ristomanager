@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import OrdineDettaglioCSS from "../Components/StyleComponents/OrdineDettaglio.module.css"
-import { defineStorage } from "../functions/defineStorage";
+import { defineStorage } from "../functions/storageFunctions/defineStorage";
 import EditOrder from "./EditOrder";
 
 const OrdineDettaglio = ()=>{
@@ -14,10 +14,6 @@ const OrdineDettaglio = ()=>{
  const dispatch = useDispatch()
 
  defineStorage(dispatch,ordiniDaEvadere, ordiniEvasi)
-//  if(ordiniDaEvadere.length>0){
-//     localStorage.ordiniDaEvadere=JSON.stringify(ordiniDaEvadere)
-//  } 
-
  useEffect(()=>{
      let ordToShow = ordiniDaEvadere.filter(el=>el.id.toString()===ordId)
      setOrdine(...ordToShow)

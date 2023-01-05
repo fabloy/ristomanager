@@ -11,27 +11,33 @@ import OrdineDettaglio from './Components/OrdineDettaglio';
 
 import { Route } from 'react-router';
 import { BrowserRouter, Routes} from 'react-router-dom';
-import {setLogged} from '../src/Store/StoreUser'
+import {setAdmin, setLogged, setOrdiniDaEvadere} from '../src/Store/StoreUser'
 import { useDispatch, useSelector } from 'react-redux';
 import FormNuovoOrdine from './Components/FormNuovoOrdine';
 import FormRegistrazione from './Components/FormRegistrazione';
 import FormNewOperator from './Components/FormNewOperator';
 import Advisor from './Components/StyleComponents/Advisor';
 import DownNavbar from './Components/DownNavbar';
+import { useEffect } from 'react';
 
 
 
 function App() {
- const {logged, ordiniDaEvadere}=useSelector(state=>state)
+ const {logged, ordiniDaEvadere,admin}=useSelector(state=>state)
+ const dispatch = useDispatch()
  
- return (
+localStorage.logged && dispatch(setLogged(JSON.parse(localStorage.logged)))
+
+
+
+return (
     <div className="App">
       
       <BrowserRouter>
       <Navbar logged={logged}/>
        <Routes>
         <Route path="/registrazione" element={<Registrazione />} />
-        <Route path="/" element={<Home logged={logged}/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/login" element={<FormLogin/>} />
         <Route path="/logout" element={
           <Logout 
@@ -68,7 +74,6 @@ function App() {
        </Routes>
        <DownNavbar></DownNavbar>
       </BrowserRouter>
-
     </div>
   );
 }
