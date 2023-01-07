@@ -11,7 +11,10 @@ import OrdineDettaglio from './Components/OrdineDettaglio';
 
 import { Route } from 'react-router';
 import { BrowserRouter, Routes} from 'react-router-dom';
+
 import {setAdmin, setLogged, setOrdiniDaEvadere} from '../src/Store/StoreUser'
+
+
 import { useDispatch, useSelector } from 'react-redux';
 import FormNuovoOrdine from './Components/FormNuovoOrdine';
 import FormRegistrazione from './Components/FormRegistrazione';
@@ -27,8 +30,6 @@ function App() {
  const dispatch = useDispatch()
  
 localStorage.logged && dispatch(setLogged(JSON.parse(localStorage.logged)))
-
-
 
 return (
     <div className="App">

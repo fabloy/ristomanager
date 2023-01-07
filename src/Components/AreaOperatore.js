@@ -2,20 +2,21 @@ import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { filtra } from "../functions/filtra";
 import { setOrdiniDaEvadere, filtraOrdiniDaEvadere, setOrdiniEvasi, setNome } from "../Store/StoreUser";
 import AreaAdminCSS from "./StyleComponents/AreaAdmin.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCakeCandles,faIceCream} from '@fortawesome/free-solid-svg-icons'
 import BoxContainerOrdine from "./StyleComponents/BoxContainerOrdine";
 import ButtonInput from "./MiniComponents/formComponents/ButtonInput";
+
 import { defineLSinOperatorArea} from "../functions/storageFunctions/defineStorage";
+
+
 
 
 const AreaOperatore = ()=>{
     const {nome, ordiniDaEvadere, ordiniEvasi, logged}=useSelector(state=>state)
     const [advisor, setAdvisor] = useState("Nessun ordine da evadere")
-    
     const dispatch = useDispatch()
     localStorage.admin="false"
     useEffect(()=>{
@@ -23,7 +24,6 @@ const AreaOperatore = ()=>{
     },[ordiniDaEvadere?.length])
     defineLSinOperatorArea(ordiniDaEvadere, ordiniEvasi,dispatch)
 
-    
 
     return(
         <main className={AreaAdminCSS.main}>
