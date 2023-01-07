@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LogoutCSS from "../Components/StyleComponents/Logout.module.css"
+import { Link } from "react-bootstrap-icons";
 const Logout=({logged})=>{
     const [show, setShow] = useState(false)
     let url = window.location.href
@@ -7,12 +8,16 @@ const Logout=({logged})=>{
     useEffect(()=>{
      url==='/logout' && logged? setShow(true) : setShow(false)
      logged? setShow(true):setShow(false)
+     
     },[url])
+    
 
     const logout = ()=>{
-     setShow(false)
      localStorage.clear()
      window.location.href='/'
+    }
+    const goToHome = ()=>{
+      window.location.href='/'
     }
     
 
@@ -26,12 +31,17 @@ const Logout=({logged})=>{
           <p>
             Sei sicuro di voler effettuare il logout?
           </p>
-            <button onClick={()=>logout()}>
+            <button 
+             onClick={
+              ()=>logout()}
+            >
                 si
             </button>
-            <button onClick={()=>{
-                setShow(false)
-                }}>no</button>
+           
+             <button onClick={goToHome}>
+                no
+              </button>
+           
         </section>
     )
 }

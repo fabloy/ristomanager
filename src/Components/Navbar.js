@@ -10,7 +10,7 @@ import { showMenu } from "../functions/showMenu"
 
 const Navbar = ({logged})=>{
   let itemsLogged = ["logout"]
-  let itemsNotLogged = ["registrazione","login"]
+  let itemsNotLogged = [""]
   const [showAdv, setShowAdv] = useState(false)
   const [openOrClose, setOpenOrClose] = useState(false)
 

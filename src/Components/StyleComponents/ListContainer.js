@@ -34,9 +34,21 @@ const ListContainer = ({logged, itemsLogged, itemsNotLogged,setShowAdv, showAdv}
          :
             itemsNotLogged.map((i)=>{
                 return (
+                    <>
                     <Link to={`/${i}`}>
                      <ListItem title={i} />
                     </Link>
+                    <a>
+                    <FontAwesomeIcon 
+                      icon={faCircleInfo}
+                      className={`pointer icon` }
+                      onClick={()=>{
+                      setShowAdv(!showAdv)
+                      }}
+                     />
+                     </a>
+                     </>
+                    
                 )
             })
         

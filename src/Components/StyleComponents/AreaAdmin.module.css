@@ -32,6 +32,8 @@ p{
     list-style: none;
     min-height: 12rem;
   }
+
+  
   .linkWrapper div{
     display: flex;
     flex-wrap: wrap;
@@ -203,6 +205,10 @@ p{
     background-color: wheat;
     border-radius: 5px;
     color: var(--primary);
+  }
+  .ordersWrapper .section:last-child .ul li{
+   text-align: left;
+   width: 100%;
   }
   
   }
