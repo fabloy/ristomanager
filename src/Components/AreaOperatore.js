@@ -18,11 +18,10 @@ const AreaOperatore = ()=>{
     
     const dispatch = useDispatch()
     localStorage.admin="false"
-    // defineStorage(dispatch, ordiniDaEvadere, ordiniEvasi)
     useEffect(()=>{
      ordiniDaEvadere?.length>0 ? setAdvisor() : setAdvisor("Nessun ordine da evadere")
     },[ordiniDaEvadere?.length])
-  defineLSinOperatorArea(ordiniDaEvadere, ordiniEvasi,dispatch)
+    defineLSinOperatorArea(ordiniDaEvadere, ordiniEvasi,dispatch)
 
     
 

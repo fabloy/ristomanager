@@ -21,6 +21,7 @@ const defineStorage = (dispatch,ordiniDaEvadere, ordiniEvasi)=>{
  }
 
  const defineLSinOperatorArea = (ordiniDaEvadere, ordiniEvasi,dispatch)=>{
+  console.log("define", localStorage.logged)
   //sei loggato? allora crea in localStorage ordiniDaEvadere e OrdiniEvasi
   if(localStorage.logged==="true" ){
     dispatch(setNome(localStorage.nome))

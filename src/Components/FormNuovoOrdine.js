@@ -12,7 +12,7 @@ import SelectInput from "./MiniComponents/formComponents/SelectInput";
 import NumeberInput from "./MiniComponents/formComponents/NumberInput";
 import TextAreaInput from "./MiniComponents/formComponents/TextAreaInput";
 import DateInput from "./MiniComponents/formComponents/DateInput";
-import ButtonInput from "./MiniComponents/formComponents/ButtonInput"
+import Advisor from "../Components/StyleComponents/Advisor";
 import TextElement from "./MiniComponents/TextElement"
 import AlertElement from "./MiniComponents/AlertElement";
 import { checkNome,checkDate, checkTel, checkEmail, checkPassword, checkProductSelected } from "../functions/checkValue";
@@ -37,10 +37,11 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     const [orderNumber, setOrderNumber]=useState(idOrd)
     const [date, setDate]=useState()
     const [description, setDescription]=useState()
-    const [ingredients, setIngredients]=useState()
+    const [showAdv, setShowAdv] = useState(false)
     const [tel, setTel]=useState()
     const [view, setView]=useState()
     const [alert, setAlert]=useState()
+    const [advText, setAdvText]=useState("")
     const [priceSelected, setPriceSelected] = useState("")
     const [nameProductSelected, setNameProductSelected] = useState()
     const [count, setCount]= useState("")
@@ -49,7 +50,7 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     let ordineGenerato
     const invioNuovoOrdine = (e)=>{
         e.preventDefault()
-        if(name && date && description && tel.length===10){
+        if(name.length>3 && date && description && tel.length===10){
          setOrderNumber(orderNumber+1)
          ordineGenerato = new Ordine(name, tel, description,date,nameProductSelected,quantity, count, orderNumber)
          dispatch(setOrdiniDaEvadere({
@@ -62,12 +63,17 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
           'quantita':ordineGenerato.quantita,
           'prezzo':ordineGenerato.prezzo
         }))
+        setAdvText("Ordine inserito")
           setView(true)
          localStorage.setItem("ordiniDaEvadere",JSON.stringify([...ordiniDaEvadere, ordineGenerato]))
          localStorage.setItem("ordiniEvasi",JSON.stringify([...ordiniEvasi])) 
+         setShowAdv(true)
          cleanInput()
+         
         }else{
           console.log("error! form not sent", name,date, description,tel.length===10)
+          setAdvText("ATTENZIONE ! compilare tutti i campi correttamente")
+          setShowAdv(true)
         }
     }
 
@@ -77,6 +83,9 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
     })
     let productFind = product[0]
     return productFind?.name
+    }
+    const hide = (e)=>{
+      setShowAdv(e)
     }
 
     useEffect(()=>{
@@ -153,7 +162,13 @@ const FormNuovoOrdine=({nome, telefono, dataConsegna, descrizione, ingredientiPr
             }
       >
       </FormToCustom>
-      
+      <Advisor
+        title="Inserimento ordine" 
+        text={advText}
+        hide={(e)=>hide(e)} 
+        showAdv={showAdv}    
+      >
+      </Advisor>
       </>
      
     )
