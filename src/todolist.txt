@@ -2,5 +2,5 @@
 
 - aggiungere controlli in login, se i controlli sono tutti true, loggare l'utente, modificare lo state centralizzato
   con i nuovi dati dell'utente.
-  -StoreBrowser
-  -Aggiungere voce avisro su tutti i form
+  - Creare un area di inserimento orari
+  - creare un area con tutti i nuovi utenti inseriti

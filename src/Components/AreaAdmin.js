@@ -55,7 +55,7 @@ const AreaAdmin = ()=>{
     <FontAwesomeIcon icon={faCakeCandles} />
      <h5 className={AreaAdminCSS.h5}>Ordini da evadere</h5>
      <ul className={AreaAdminCSS.ul}>
-      {advisor && <li id={AreaAdminCSS.advisor}>{advisor}</li>}
+      {advisor && <li className={AreaAdminCSS.advisor}>{advisor}</li>}
     {
         ordiniDaEvadere.map(ord=>{
             return(
@@ -71,9 +71,15 @@ const AreaAdmin = ()=>{
     <FontAwesomeIcon icon={faIceCream} />
      <h5>Ordini evasi</h5>
     
-     <ul className={AreaAdminCSS.ul}>
+     <ul 
+      className={AreaAdminCSS.ul}
+      id={ordiniEvasi?.length>0 && AreaAdminCSS.evadedWrapper}
+      >
        { 
-       ordiniEvasi?.length<1 && <li>Nessun ordine evaso</li>
+       ordiniEvasi?.length<1 && <li 
+        className={`${AreaAdminCSS.advisor} ${AreaAdminCSS.notEvaded}`}>
+            Nessun ordine evaso
+      </li>
        } 
     {
         ordiniEvasi.map(ord=>{

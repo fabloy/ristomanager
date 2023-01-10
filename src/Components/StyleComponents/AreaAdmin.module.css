@@ -168,9 +168,10 @@ p{
         justify-content:flex-start;
         overflow: auto;
       }
-      #advisor{
+      .advisor{
         width: 100%;
       }
+      
       .ordersWrapper{
         display: flex;
         min-height: 53vh;
@@ -191,7 +192,6 @@ p{
   
 
   .section:nth-child(even) ul{
-    flex-direction: column;
     justify-content: flex-start;
   }
   .section:nth-child(even) ul li{
@@ -200,15 +200,24 @@ p{
     text-align: center;
     cursor: pointer;
   }
+  #evadedWrapper{
+    flex-direction: column;
+  }
+  .section:nth-child(even) ul .notEvaded{
+    text-align: center;
+    max-width: 100%;
+    min-width: 100%;
+    margin: 0px;
+  }
+
   .section:nth-child(even) ul li:hover{
     transition: .3s;
     background-color: wheat;
     border-radius: 5px;
     color: var(--primary);
   }
-  .ordersWrapper .section:last-child .ul li{
-   text-align: left;
-   width: 100%;
-  }
+
+  
+  
   
   }
