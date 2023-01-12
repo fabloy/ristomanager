@@ -8,6 +8,7 @@ import FormLogin from './Components/FormLogin';
 import Logout from './Components/Logout';
 import Dashboard from './Components/Dashboard';
 import OrdineDettaglio from './Components/OrdineDettaglio';
+import CalendarWrapper from './Components/CalendarWrapper';
 
 import { Route } from 'react-router';
 import { BrowserRouter, Routes} from 'react-router-dom';
@@ -70,6 +71,9 @@ return (
 
           <Route path="/new-operator/:created" element={
            <FormNewOperator/>
+          }/> 
+          <Route path="/manage-employee" element={
+           <CalendarWrapper/>
           }/> 
   
        </Routes>

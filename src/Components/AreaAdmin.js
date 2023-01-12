@@ -47,6 +47,11 @@ const AreaAdmin = ()=>{
           triggerName={"Crea nuovo ordine"}
           />
          </Link>
+         <Link to="/manage-employee">
+         <ButtonInput
+          triggerName={"Gestione calendario"}
+          />
+         </Link>
         </div>
     </aside>   
     
