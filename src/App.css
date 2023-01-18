@@ -26,6 +26,13 @@ a{
 ul{
   padding: 0;
 }
+li{
+  list-style: none;
+}
+.inlineBlock{
+  display: inline-block;
+  margin: 5px;
+}
 form{
   padding: 2rem;
   margin: 3rem auto;

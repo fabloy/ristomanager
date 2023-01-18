@@ -14,7 +14,9 @@ const CalendarGrid = ({dayToShow, operatorsToShow, operatorSelected})=>{
         </span>
         <span>
          {el.orario? el.orario : <button 
-          onClick={()=>operatorSelected(el)}
+          onClick={()=>{
+            operatorSelected(el)
+          }}
           >inserisci orario</button>}
         </span>
         </li>))}

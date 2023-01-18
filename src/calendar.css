@@ -1,10 +1,17 @@
+.calendarWrapper{
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .react-calendar {
-    width: 350px;
-    max-width: 100%;
+    /* width: 350px; */
+    max-width: 90%;
     background: white;
     border: 1px solid #a0a096;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
+    margin: 0 auto;
   }
   .react-calendar--doubleView {
     width: 700px;
@@ -105,7 +112,7 @@
     background: #a9d4ff;
   }
   .react-calendar__tile--active {
-    background: #006edc;
+    background: var(--primary);
     color: white;
   }
   .react-calendar__tile--active:enabled:hover,

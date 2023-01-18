@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 //Creare nel initialstate un oggetto padre 
 //Al suo interno creare state dipendentiAdmin:[], dipendentiOperatori:[], ordiniDaEvadere:[], ordiniEvasi:[]
 
@@ -14,6 +14,7 @@ const initialState = {
     ordiniDaEvadere:[],
     ordiniEvasi:[],
     operatoriAggiunti:[],
+    shifts:[],
     id,
     idOrd:1
 }
@@ -65,6 +66,19 @@ const storeUser=createSlice({
         setAggiungiOperatore:(state, action)=>{
             console.log(action.payload)
             state.operatoriAggiunti=[...state.operatoriAggiunti, action.payload]
+        },
+        setShifts:(state,action)=>{
+            state.shifts && state.shifts.map(el=>{
+               return el.id===action.id ? el = {...action} : el = el
+            })
+            console.log(action.payload)
+          state.shifts=[...state.shifts, action.payload]
+        },
+        editShift:(state,action)=>{
+            // state.shifts[0] = {...action.payload}
+         state.shifts.map(el=>{
+           return el.id===action.payload.id ? el={...action.payload} : el=el
+            })
         }
     }
 })
@@ -85,6 +99,9 @@ export const {
     editOrdiniDaEvadere,
     deleteOrdiniDaEvadere,
     filtraOrdiniDaEvadere,
-    setAggiungiOperatore} = storeUser.actions
+    setAggiungiOperatore,
+    setShifts,
+    editShift
+    } = storeUser.actions
 
 
