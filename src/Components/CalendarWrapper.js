@@ -15,7 +15,7 @@ function CalendarWrapper() {
   const {operatoriAggiunti} = useSelector(state=>state)
   const [showShiftsManager, setShowShiftsManager] = useState(false)
   const [operatorSelectedToEdit, setOperatorSelectedToEdit] = useState()
-  const [shiftId, setShiftId] = useState(1)
+  const [shiftId, setShiftId] = useState(shifts.length)
   const [shiftsSent, setShiftsSent] = useState([...shiftsDays])
 
   const shiftsManagerView = ()=>{
@@ -23,6 +23,7 @@ function CalendarWrapper() {
   }
   const updateSfhitsDays = ()=>{
     [...shiftsSent]!==[...shifts] ? setShiftsSent([shifts.map(el=>el?.day)]) : setShiftsSent(shiftsSent)
+
   }
  
   const generateShiftId = ()=>{
@@ -37,9 +38,12 @@ function CalendarWrapper() {
 
   useEffect(()=>{
     shiftsManagerView()
-    checkShiftsSent(dayToShow)
-    updateSfhitsDays()
-  },[operatorSelectedToEdit, dayToShow])
+    // checkShiftsSent(dayToShow)
+    // updateSfhitsDays()
+    shiftId !== shifts.length && setShiftId(shifts.length)
+    console.log(shiftId, shifts.length)
+    
+  },[operatorSelectedToEdit, dayToShow, shifts.length])
 
   return (
     <section className='calendarWrapper'>

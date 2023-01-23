@@ -13,7 +13,12 @@ const initialState = {
     password:"",
     ordiniDaEvadere:[],
     ordiniEvasi:[],
-    operatoriAggiunti:[],
+    operatoriAggiunti:[{ nome:"Mario",
+        email:"fabio@gloty.it",
+        password:"ASDad121!&&%",
+        id:1,
+        ordiniDaEvadere:[],
+        ordiniEvasi:[]}],
     shifts:[],
     id,
     idOrd:1
@@ -29,7 +34,6 @@ const storeUser=createSlice({
         },
         setNome:(state, action)=>{
          state.nome=action.payload
-        //  console.log(action, "payload")
         },
         setEmail:(state,action)=>{
          state.email=action.payload
@@ -61,24 +65,26 @@ const storeUser=createSlice({
         },
         setAdmin:(state,action)=>{
             state.admin=action.payload
-            console.log(action.payload)
         },
         setAggiungiOperatore:(state, action)=>{
-            console.log(action.payload)
             state.operatoriAggiunti=[...state.operatoriAggiunti, action.payload]
         },
         setShifts:(state,action)=>{
             state.shifts && state.shifts.map(el=>{
                return el.id===action.id ? el = {...action} : el = el
             })
-            console.log(action.payload)
-          state.shifts=[...state.shifts, action.payload]
+           state.shifts=[...state.shifts, action.payload]
         },
         editShift:(state,action)=>{
-            // state.shifts[0] = {...action.payload}
-         state.shifts.map(el=>{
-           return el.id===action.payload.id ? el={...action.payload} : el=el
-            })
+         let shiftToEdit = state.shifts.filter(el=>el.id===action.payload.id)
+         let operatorToEdit = shiftToEdit[0].operator.filter(op=>op.id === action.payload.operator[0].id)
+
+         let result = state.shifts.map(el=>el.id === shiftToEdit[0].id && shiftToEdit[0].operator.map(o=>{
+           return o.id===operatorToEdit[0].id ? o = {...o,...action.payload.operator[0]} : o=o
+         }))
+           state.shifts = state.shifts.map(shift=>{
+            return shift.id===shiftToEdit[0].id ? shift={...shift, operator: result[0]} : shift} //piccola modifica da fare: probabilmente ci vuole un if
+        )
         }
     }
 })
