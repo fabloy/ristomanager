@@ -20,7 +20,7 @@ const CalendarShiftsManager = ({
   //quando il gionro che stai modificando non ha orari già segnati:
   let valFound = shifts.filter(el=>el?.day===dayToShow)
   valFound.length===0 && dispatch(setShifts(shift))
-
+  
   //quando il giorno che stai modificando ha già un orario inserito in quel giorno
   //inseriscimi tutte le modifiche sul turno in questione  ma non aggiornare l'id e non aggiungere nuovi ogg.
   valFound.length>0 && shifts.map((el)=>{

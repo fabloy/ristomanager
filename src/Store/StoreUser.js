@@ -82,37 +82,34 @@ const storeUser=createSlice({
            state.shifts=[...state.shifts, action.payload]
         },
         editShift:(state,action)=>{
-         let shiftToEdit = state.shifts.filter(el=>el.id===action.payload.id)
-         let operatorToEdit = shiftToEdit[0].operator.filter(op=>op?.id === action.payload.operator[0].id)
-
-         let result = state.shifts.map(el=>el.id === shiftToEdit[0].id && shiftToEdit[0].operator.map(o=>{
-           return o?.id===operatorToEdit[0]?.id ? o = {...o,...action.payload?.operator[0]} : o=o
-         }))
-
-         let addOp;
+         let addOp=false;
          let opToAdd = state.shifts.map(shift=>{
             return shift.id===action.payload.id ? shift={...shift, operator: [...shift.operator.map(op=>{
                 if(op.email===action.payload.operator[0].email){
                   addOp=false
-                  console.log("false",addOp)
-                  return op={...op, ...result[0][0]}
+                  return op={...op, ...action.payload.operator[0]}
                 }else{
-                  addOp=true
-                  console.log("true",addOp)
+                  let esixtingOp = state.shifts.map(shift =>{
+                  return shift.id===action.payload.id ? shift.operator.filter(op=>{
+                    return op.email===action.payload.operator[0].email
+                    }) : []
+                  })
+                  esixtingOp=esixtingOp[0]//
+                  esixtingOp.length>0 ? addOp=false : addOp = true
                   return action.payload.operator[0]
                 } 
-            })] //
+            })]
             } : shift} 
         )
         state.shifts = state.shifts.map(shift=>{
-          if(shift.id === opToAdd[0].id && !addOp){
-            console.log("if")
+          if(shift.id === opToAdd[0].id && !addOp){//
+            console.log("if", shift, opToAdd[0].id, shift.id)
            return shift={...shift, operator:[...shift.operator.map(op=> op.email===opToAdd[0].operator[0].email ? op={...op, ...opToAdd[0].operator[0]} : op=op)]}
           }else if(shift.id === opToAdd[0].id && addOp){
-            console.log("elseif")
+            console.log("else if")
             return shift={...shift, operator:[...shift.operator, opToAdd[0].operator[0]]}
-          }else{//
-            console.log("else", shift.id ,opToAdd[0].id ,addOp)
+          }else{
+            console.log("else",addOp, opToAdd[0].id, shift.id)
             return shift
           }
         })
