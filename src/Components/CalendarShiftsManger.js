@@ -15,18 +15,7 @@ const CalendarShiftsManager = ({
  const [shift, setShift] = useState()
 
 
- const extractShift = (s)=>{
-  //turno corretto estratto:
-   let shiftExtraced = s.filter(el=>el.day===shift.day)
-  shiftExtraced[0]?.operator.map(el=>{
-    //da sistemare:
-    if(el.id===operatorSelectedToEdit.id){
-      el={...el,...operatorSelectedToEdit}
-    }
-  })
-   let operatorsExtracted = shiftExtraced[0].operator.map(el=>el)
-   return operatorsExtracted
- }
+
  const sendShift = ()=>{
   //quando il gionro che stai modificando non ha orari già segnati:
   let valFound = shifts.filter(el=>el?.day===dayToShow)
@@ -35,9 +24,7 @@ const CalendarShiftsManager = ({
   //quando il giorno che stai modificando ha già un orario inserito in quel giorno
   //inseriscimi tutte le modifiche sul turno in questione  ma non aggiornare l'id e non aggiungere nuovi ogg.
   valFound.length>0 && shifts.map((el)=>{
-    // console.log("esistono già dei turni", el)
      if(el.day === shift.day){
-      // let existingShifts = extractShift(shifts)
       let newShift={...shift, id:el.id}
       dispatch(editShift(newShift))
     }

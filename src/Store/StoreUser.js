@@ -18,6 +18,12 @@ const initialState = {
         password:"ASDad121!&&%",
         id:1,
         ordiniDaEvadere:[],
+        ordiniEvasi:[]},
+        { nome:"Filomeno",
+        email:"filo@gloty.it",
+        password:"ASrr5!2121!&&%",
+        id:2,
+        ordiniDaEvadere:[],
         ordiniEvasi:[]}],
     shifts:[],
     id,
@@ -77,14 +83,39 @@ const storeUser=createSlice({
         },
         editShift:(state,action)=>{
          let shiftToEdit = state.shifts.filter(el=>el.id===action.payload.id)
-         let operatorToEdit = shiftToEdit[0].operator.filter(op=>op.id === action.payload.operator[0].id)
+         let operatorToEdit = shiftToEdit[0].operator.filter(op=>op?.id === action.payload.operator[0].id)
 
          let result = state.shifts.map(el=>el.id === shiftToEdit[0].id && shiftToEdit[0].operator.map(o=>{
-           return o.id===operatorToEdit[0].id ? o = {...o,...action.payload.operator[0]} : o=o
+           return o?.id===operatorToEdit[0]?.id ? o = {...o,...action.payload?.operator[0]} : o=o
          }))
-           state.shifts = state.shifts.map(shift=>{
-            return shift.id===shiftToEdit[0].id ? shift={...shift, operator: result[0]} : shift} //piccola modifica da fare: probabilmente ci vuole un if
+
+         let addOp;
+         let opToAdd = state.shifts.map(shift=>{
+            return shift.id===action.payload.id ? shift={...shift, operator: [...shift.operator.map(op=>{
+                if(op.email===action.payload.operator[0].email){
+                  addOp=false
+                  console.log("false",addOp)
+                  return op={...op, ...result[0][0]}
+                }else{
+                  addOp=true
+                  console.log("true",addOp)
+                  return action.payload.operator[0]
+                } 
+            })] //
+            } : shift} 
         )
+        state.shifts = state.shifts.map(shift=>{
+          if(shift.id === opToAdd[0].id && !addOp){
+            console.log("if")
+           return shift={...shift, operator:[...shift.operator.map(op=> op.email===opToAdd[0].operator[0].email ? op={...op, ...opToAdd[0].operator[0]} : op=op)]}
+          }else if(shift.id === opToAdd[0].id && addOp){
+            console.log("elseif")
+            return shift={...shift, operator:[...shift.operator, opToAdd[0].operator[0]]}
+          }else{//
+            console.log("else", shift.id ,opToAdd[0].id ,addOp)
+            return shift
+          }
+        })
         }
     }
 })
