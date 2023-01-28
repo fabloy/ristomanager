@@ -101,15 +101,17 @@ const storeUser=createSlice({
             })]
             } : shift} 
         )
+
+        //codice quasi funzionante, pensare meglio opToAdd e riguardare existingOp
         state.shifts = state.shifts.map(shift=>{
-          if(shift.id === opToAdd[0].id && !addOp){//
+          if(shift.id === opToAdd[shift.id].id && !addOp){// al posto di opToAdd puoi usare un metodo a cui passi l'array opTAdd
             console.log("if", shift, opToAdd[0].id, shift.id)
-           return shift={...shift, operator:[...shift.operator.map(op=> op.email===opToAdd[0].operator[0].email ? op={...op, ...opToAdd[0].operator[0]} : op=op)]}
-          }else if(shift.id === opToAdd[0].id && addOp){
+           return shift={...shift, operator:[...shift.operator.map(op=> op.email===opToAdd[shift.id].operator[0].email ? op={...op, ...opToAdd[shift.id].operator[0]} : op=op)]}
+          }else if(shift.id === opToAdd[shift.id].id && addOp){
             console.log("else if")
-            return shift={...shift, operator:[...shift.operator, opToAdd[0].operator[0]]}
+            return shift={...shift, operator:[...shift.operator, opToAdd[shift.id].operator[0]]}
           }else{
-            console.log("else",addOp, opToAdd[0].id, shift.id)
+            console.log("else",addOp, opToAdd[shift.id].id, shift.id)
             return shift
           }
         })
