@@ -82,39 +82,33 @@ const storeUser=createSlice({
            state.shifts=[...state.shifts, action.payload]
         },
         editShift:(state,action)=>{
-         let addOp=false;
-         let opToAdd = state.shifts.map(shift=>{
-            return shift.id===action.payload.id ? shift={...shift, operator: [...shift.operator.map(op=>{
-                if(op.email===action.payload.operator[0].email){
-                  addOp=false
-                  return op={...op, ...action.payload.operator[0]}
-                }else{
-                  let esixtingOp = state.shifts.map(shift =>{
-                  return shift.id===action.payload.id ? shift.operator.filter(op=>{
-                    return op.email===action.payload.operator[0].email
-                    }) : []
-                  })
-                  esixtingOp=esixtingOp[0]//
-                  esixtingOp.length>0 ? addOp=false : addOp = true
-                  return action.payload.operator[0]
-                } 
-            })]
-            } : shift} 
-        )
+         let addOp = false;
+         const shiftFound = state.shifts.filter(shift=>shift.id === action.payload.id)
+         const operatorFound = shiftFound[0].operator.filter(op=>op.id === action.payload.operator[0].id)
+         operatorFound.length > 0 ? addOp=false : addOp=true;
+         
+         const editOperatorFound = (array, opToCompare)=>{
+          return array.map(op=> op.email === opToCompare.email ? op={...op, ...opToCompare} : op )
+         }
 
-        //codice quasi funzionante, pensare meglio opToAdd e riguardare existingOp
-        state.shifts = state.shifts.map(shift=>{
-          if(shift.id === opToAdd[shift.id].id && !addOp){// al posto di opToAdd puoi usare un metodo a cui passi l'array opTAdd
-            console.log("if", shift, opToAdd[0].id, shift.id)
-           return shift={...shift, operator:[...shift.operator.map(op=> op.email===opToAdd[shift.id].operator[0].email ? op={...op, ...opToAdd[shift.id].operator[0]} : op=op)]}
-          }else if(shift.id === opToAdd[shift.id].id && addOp){
-            console.log("else if")
-            return shift={...shift, operator:[...shift.operator, opToAdd[shift.id].operator[0]]}
-          }else{
-            console.log("else",addOp, opToAdd[shift.id].id, shift.id)
+         if(addOp){//aggiunta operatore nuovo in turno esistente
+          state.shifts = state.shifts.map(shift=>{
+           if(shift.id === shiftFound[0].id){
+            return shift={...shift, operator: [...shift.operator, action.payload.operator[0]]}
+           }else{
             return shift
-          }
-        })
+           }
+          }) 
+         }else{//modifica operatore esistente in turno esistente
+          state.shifts = state.shifts.map(shift=>{
+            if(shift.id === shiftFound[0].id){
+              return shift={...shift, operator: editOperatorFound(shift.operator, action.payload.operator[0])}
+            }else{
+              return shift
+            }
+          })
+        }
+
         }
     }
 })
