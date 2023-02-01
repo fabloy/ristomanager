@@ -1,19 +1,28 @@
 import { useEffect } from "react"
 import { useState } from "react"
+import { useSelector } from "react-redux"
+ 
 
 const CalendarGrid = ({dayToShow, operatorsToShow, operatorSelected})=>{
-    const [shifts, setShifts] = useState()
+    const [shift, setShift] = useState()
+    const {shifts} = useSelector(state=>state)
     useEffect(()=>{
-     setShifts({day:dayToShow, operators:[...operatorsToShow]})
-    },[dayToShow])
+     setShift({day:dayToShow, operators:[...operatorsToShow]})
+    },[dayToShow, operatorsToShow])
+
+    const setEnterExit = (dayToCheck,operatorToCheck)=>{
+      let shiftFind = shifts.filter(shift=>shift.day===dayToCheck)
+      let operatorFind = shiftFind[0]?.operator.filter(op=>op.id === operatorToCheck.id)
+      return operatorFind
+    } 
     return (
         <ul>
-         {shifts?.operators?.map((el=><li>
+         {shift?.operators?.map((el=><li>
         <span>
           {el.nome}
         </span>
         <span>
-         {el.orario? el.orario : <button 
+         {setEnterExit(dayToShow, el)?.length > 0? ` enter: ${setEnterExit(dayToShow, el)[0]?.enter} exit:${setEnterExit(dayToShow, el)[0]?.exit}` : <button 
           onClick={()=>{
             operatorSelected(el)
           }}

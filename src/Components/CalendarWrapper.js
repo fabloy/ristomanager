@@ -41,9 +41,7 @@ function CalendarWrapper() {
     // checkShiftsSent(dayToShow)
     // updateSfhitsDays()
     shiftId !== shifts.length && setShiftId(shifts.length)
-    console.log(shiftId, shifts.length)
-    
-  },[operatorSelectedToEdit, dayToShow, shifts.length])
+   },[operatorSelectedToEdit, dayToShow, shifts.length])
 
   return (
     <section className='calendarWrapper'>
