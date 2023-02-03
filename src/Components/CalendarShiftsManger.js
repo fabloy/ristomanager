@@ -37,8 +37,8 @@ const CalendarShiftsManager = ({
 
 
     return(
-      <>
-      { show && operatoriAggiunti.length>0 && operatorSelectedToEdit ?  <article style={{"background":"wheat"}}>
+      <div className='shiftsManagerWrapper'>
+      { show && operatoriAggiunti.length>0 && operatorSelectedToEdit ?  <article>
        <li>
         <p>{`${operatorSelectedToEdit?.nome}`}</p> 
         <span
@@ -89,7 +89,7 @@ const CalendarShiftsManager = ({
      (show && operatoriAggiunti.length>0 && !operatorSelectedToEdit) && <p>Seleziona un operatore</p>
     }
     
-     </>
+     </div>
     )
 }
 

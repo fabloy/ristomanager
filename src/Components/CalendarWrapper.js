@@ -54,9 +54,6 @@ function CalendarWrapper() {
        maxDate={new Date(2023, 11, 31)}
        className={"prova"}
        />
-
-      <div>
-      <p>{dayToShow}</p>
       <CalendarGrid 
        dayToShow={dayToShow}
        operatorsToShow={operatoriAggiunti}
@@ -64,10 +61,6 @@ function CalendarWrapper() {
         setOperatorSelectedToEdit(el)
       }}
        />
-       <button onClick={()=>setShowShiftsManager(true)}>
-        Modifica calendario
-       </button>
-     </div>
      <CalendarShiftsManager
      show={showShiftsManager}
      operatorSelectedToEdit={operatorSelectedToEdit}

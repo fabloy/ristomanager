@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
- 
+ import {setEnterExit} from "../functions/setEnterExit"
 
 const CalendarGrid = ({dayToShow, operatorsToShow, operatorSelected})=>{
     const [shift, setShift] = useState()
@@ -10,26 +10,27 @@ const CalendarGrid = ({dayToShow, operatorsToShow, operatorSelected})=>{
      setShift({day:dayToShow, operators:[...operatorsToShow]})
     },[dayToShow, operatorsToShow])
 
-    const setEnterExit = (dayToCheck,operatorToCheck)=>{
-      let shiftFind = shifts.filter(shift=>shift.day===dayToCheck)
-      let operatorFind = shiftFind[0]?.operator.filter(op=>op.id === operatorToCheck.id)
-      return operatorFind
-    } 
+   
     return (
+      <div className="calendarGridWrapper">
+        <p>{dayToShow}</p>
+        <p>{shift?.operators?.length===0 && "Nessun operatore"}</p>
         <ul>
          {shift?.operators?.map((el=><li>
-        <span>
+        <span 
+          onClick={()=>operatorSelected(el)}>
           {el.nome}
         </span>
         <span>
-         {setEnterExit(dayToShow, el)?.length > 0? ` enter: ${setEnterExit(dayToShow, el)[0]?.enter} exit:${setEnterExit(dayToShow, el)[0]?.exit}` : <button 
-          onClick={()=>{
-            operatorSelected(el)
-          }}
-          >inserisci orario</button>}
+         {setEnterExit(shifts,dayToShow, el)?.length > 0? ` enter: ${setEnterExit(shifts,dayToShow, el)[0]?.enter} exit:${setEnterExit(shifts,dayToShow, el)[0]?.exit}` : <button 
+          onClick={()=>operatorSelected(el)}
+          >
+            inserisci orario
+          </button>}
         </span>
         </li>))}
       </ul>
+      </div>
     )
 }
 
