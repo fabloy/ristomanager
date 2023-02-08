@@ -18,19 +18,21 @@ import Advisor from "./StyleComponents/Advisor";
 
 
 const FormNewOperator = ()=>{
- let params = useParams()
+//  let params = useParams()
  let dispatch = useDispatch()
  const [view, setView]=useState(false)
+ const [userId, setUserId] = useState(0)
  const [name, setName]=useState()
  const [email, setEmail]=useState()
  const [password, setPassword]=useState()
  const [alert, setAlert]=useState()
- const {nome}=useSelector(state=>state)
- const {operatoriAggiunti}=useSelector(state=>state)
+//  const {nome}=useSelector(state=>state)
+//  const {operatoriAggiunti}=useSelector(state=>state)
 
  const sendUser = ()=>{
   if(validateEmail(email) && validateNomeAttivita(name) && validatePassword(password)){
-    let operator = new Operatore(name, email, password, 1)
+    setUserId(userId+1)
+    let operator = new Operatore(name, email, password, userId)
     setAlert("") 
     setName("")
     setEmail("")
@@ -46,9 +48,9 @@ const FormNewOperator = ()=>{
 
  const checkUser= ()=>{
    if(name,email, password ){
-        if(validateEmail(email) && validateNomeAttivita(name) && validatePassword(password)){
-         setAlert("Dati Corretti") 
-        } 
+    if(validateEmail(email) && validateNomeAttivita(name) && validatePassword(password)){
+     setAlert("Dati Corretti") 
+    } 
  }
  }
 

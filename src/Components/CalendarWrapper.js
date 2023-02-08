@@ -5,13 +5,14 @@ import { useSelector } from 'react-redux';
 import CalendarGrid from './CalendarGrid';
 import "../../src/calendar.css"
 import CalendarShiftsManager from './CalendarShiftsManger';
+import {setCurrentDay} from '../functions/funCurrentDayCalendar'
 
 
 function CalendarWrapper() {
   const {shifts} = useSelector(state=>state)
   let shiftsDays = shifts?.map(el=>el?.day)
   const [value, onChange] = useState(new Date());
-  const [dayToShow, setDayToShow] = useState()
+  const [dayToShow, setDayToShow] = useState("")
   const {operatoriAggiunti} = useSelector(state=>state)
   const [showShiftsManager, setShowShiftsManager] = useState(false)
   const [operatorSelectedToEdit, setOperatorSelectedToEdit] = useState()
@@ -31,16 +32,11 @@ function CalendarWrapper() {
      return dayToShow !==el ? setShiftId(shiftId+1) : setShiftId(shiftId)
     })
   }
-  const checkShiftsSent = (day)=>{
-    let value = shiftsSent.filter(el=>el===day)
-    value.length===0 && generateShiftId()
-  }
 
   useEffect(()=>{
-    shiftsManagerView()
-    // checkShiftsSent(dayToShow)
-    // updateSfhitsDays()
-    shiftId !== shifts.length && setShiftId(shifts.length)
+   shiftsManagerView()
+   shiftId !== shifts.length && setShiftId(shifts.length)
+   setCurrentDay(dayToShow,setDayToShow)
    },[operatorSelectedToEdit, dayToShow, shifts.length])
 
   return (
