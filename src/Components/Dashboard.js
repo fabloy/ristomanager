@@ -45,7 +45,8 @@ import { filtra } from "../functions/filtra";
                 ordiniEvasi.map(ord=>{
                    return <li>ordine n. {ord.ordine.toString()}</li>
                 })
-                }</ul>
+                }
+            </ul>
         </div>
     )
  }

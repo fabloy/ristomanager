@@ -45,7 +45,7 @@ const CalendarShiftsManager = ({
          className='inlineBlock'      
         >
         entrata:
-        <input 
+        <input
          type="time"
          onChange={(e)=>{
           setHours({...hours, enter:e.target.value})
@@ -62,7 +62,7 @@ const CalendarShiftsManager = ({
         type="time"
         onChange={(e)=>{
           setHours({...hours, exit:e.target.value})
-          setShift({...shift,...hours})
+          setShift({...shift, ...hours})
         }}
        ></input>
        </span>

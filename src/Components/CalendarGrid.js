@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
  import {setEnterExit} from "../functions/setEnterExit"
+ import { Link } from "react-router-dom"
 
 const CalendarGrid = ({dayToShow, operatorsToShow, operatorSelected})=>{
     const [shift, setShift] = useState()
@@ -14,7 +15,16 @@ const CalendarGrid = ({dayToShow, operatorsToShow, operatorSelected})=>{
     return (
       <div className="calendarGridWrapper">
         <p>{dayToShow}</p>
-        <p>{shift?.operators?.length===0 && "Nessun operatore"}</p>
+        <p>
+          {shift?.operators?.length===0 && <>
+           Nessun operatore
+           <Link to="/new-operator/:created">
+           <button>Aggiungi</button>
+           </Link>
+          </>
+          }
+        </p>
+
         <ul>
          {shift?.operators?.map((el=><li>
         <span 
